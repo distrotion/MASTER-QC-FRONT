@@ -27,6 +27,16 @@ class FINALMASTERmsg_SPECIFICATION_DROP extends FINALMASTERmsg_Event {}
 
 class FINALMASTERmsg_TYPE_EDIT extends FINALMASTERmsg_Event {}
 
+class FINALMASTERmsg_UNIT_EDIT extends FINALMASTERmsg_Event {}
+
+class FINALMASTERmsg_ITEMS_EDIT extends FINALMASTERmsg_Event {}
+
+class FINALMASTERmsg_MACHINENAME_EDIT extends FINALMASTERmsg_Event {}
+
+class FINALMASTERmsg_METHODE_EDIT extends FINALMASTERmsg_Event {}
+
+class FINALMASTERmsg_SPECIFICATION_EDIT extends FINALMASTERmsg_Event {}
+
 class FINALMASTERmsg_Bloc extends Bloc<FINALMASTERmsg_Event, String> {
   FINALMASTERmsg_Bloc() : super('') {
     on<FINALMASTERmsg_TYPE_DROP>((event, emit) {
@@ -57,6 +67,26 @@ class FINALMASTERmsg_Bloc extends Bloc<FINALMASTERmsg_Event, String> {
 
     on<FINALMASTERmsg_TYPE_EDIT>((event, emit) {
       return _FINALMASTERmsg_TYPE_EDIT('', emit);
+    });
+
+    on<FINALMASTERmsg_UNIT_EDIT>((event, emit) {
+      return _FINALMASTERmsg_UNIT_EDIT('', emit);
+    });
+
+    on<FINALMASTERmsg_ITEMS_EDIT>((event, emit) {
+      return _FINALMASTERmsg_ITEMS_EDIT('', emit);
+    });
+
+    on<FINALMASTERmsg_MACHINENAME_EDIT>((event, emit) {
+      return _FINALMASTERmsg_MACHINENAME_EDIT('', emit);
+    });
+
+    on<FINALMASTERmsg_METHODE_EDIT>((event, emit) {
+      return _FINALMASTERmsg_METHODE_EDIT('', emit);
+    });
+
+    on<FINALMASTERmsg_SPECIFICATION_EDIT>((event, emit) {
+      return _FINALMASTERmsg_SPECIFICATION_EDIT('', emit);
     });
   }
 
@@ -148,12 +178,86 @@ class FINALMASTERmsg_Bloc extends Bloc<FINALMASTERmsg_Event, String> {
     emit(output);
   }
 
-  //
+  //-------------------------------------
 
   Future<void> _FINALMASTERmsg_TYPE_EDIT(
       String toAdd, Emitter<String> emit) async {
     String output = '';
+    final response = await Dio().post(
+      server + "EDIT_TYPE_FINAL",
+      data: {
+        "masterID": FINALMASTERvar.masterID_UNIT,
+      },
+    );
     FINALMASTERmainCONTEXT.read<FINALMASTER_Bloc>().add(FINALMASTER_TYPEget());
+    emit(output);
+  }
+
+  Future<void> _FINALMASTERmsg_UNIT_EDIT(
+      String toAdd, Emitter<String> emit) async {
+    String output = '';
+    final response = await Dio().post(
+      server + "EDIT_UNIT_FINAL",
+      data: {
+        "masterID": FINALMASTERvar.masterID_UNIT,
+      },
+    );
+    FINALMASTERmainCONTEXT.read<FINALMASTER_Bloc>().add(FINALMASTER_UNITget());
+    emit(output);
+  }
+
+  Future<void> _FINALMASTERmsg_ITEMS_EDIT(
+      String toAdd, Emitter<String> emit) async {
+    String output = '';
+    final response = await Dio().post(
+      server + "EDIT_ITEMS_FINAL",
+      data: {
+        "masterID": FINALMASTERvar.masterID_UNIT,
+      },
+    );
+    FINALMASTERmainCONTEXT.read<FINALMASTER_Bloc>().add(FINALMASTER_ITEMSget());
+    emit(output);
+  }
+
+  Future<void> _FINALMASTERmsg_MACHINENAME_EDIT(
+      String toAdd, Emitter<String> emit) async {
+    String output = '';
+    final response = await Dio().post(
+      server + "EDIT_MACHINENAME_FINAL",
+      data: {
+        "masterID": FINALMASTERvar.masterID_UNIT,
+      },
+    );
+    FINALMASTERmainCONTEXT.read<FINALMASTER_Bloc>()
+        .add(FINALMASTER_MACHINENAMEget());
+    emit(output);
+  }
+
+  Future<void> _FINALMASTERmsg_METHODE_EDIT(
+      String toAdd, Emitter<String> emit) async {
+    String output = '';
+    final response = await Dio().post(
+      server + "EDIT_METHODE_FINAL",
+      data: {
+        "masterID": FINALMASTERvar.masterID_UNIT,
+      },
+    );
+    FINALMASTERmainCONTEXT.read<FINALMASTER_Bloc>()
+        .add(FINALMASTER_METHODEget());
+    emit(output);
+  }
+
+  Future<void> _FINALMASTERmsg_SPECIFICATION_EDIT(
+      String toAdd, Emitter<String> emit) async {
+    String output = '';
+    final response = await Dio().post(
+      server + "EDIT_SPECIFICATION_FINAL",
+      data: {
+        "masterID": FINALMASTERvar.masterID_UNIT,
+      },
+    );
+    FINALMASTERmainCONTEXT.read<FINALMASTER_Bloc>()
+        .add(FINALMASTER_SPECIALSPECget());
     emit(output);
   }
 }

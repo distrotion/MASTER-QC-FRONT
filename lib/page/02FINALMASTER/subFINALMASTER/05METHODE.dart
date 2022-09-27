@@ -6,6 +6,7 @@ import '../../../model/model.dart';
 import '../../../widget/TABLE/05METHODEtable.dart';
 import '../../../widget/common/Advancedropdown.dart';
 import '../../../widget/common/ComInputText.dart';
+import '../../../widget/common/popup.dart';
 import '../FINALMASTERvar.dart';
 
 class METHODtable extends StatelessWidget {
@@ -73,9 +74,14 @@ class METHODtable extends StatelessWidget {
               isACTION: true,
               DeleteFN: (v) {
                 FINALMASTERvar.masterID_METHODE = _data[i].f21;
-                context
-                    .read<FINALMASTERmsg_Bloc>()
-                    .add(FINALMASTERmsg_METHODE_DROP());
+                // context
+                //     .read<FINALMASTERmsg_Bloc>()
+                //     .add(FINALMASTERmsg_METHODE_DROP());
+                POPUPyn(context, (v) {
+                  context
+                      .read<FINALMASTERmsg_Bloc>()
+                      .add(FINALMASTERmsg_METHODE_DROP());
+                }, "DELETE DATA", 120, 90);
               },
               EditFN: (v) {
                 FINALMASTERvar.ITEM_METHOD_ACTION = _data[i].f01;
@@ -201,7 +207,11 @@ class _METHODACTIONState extends State<METHODACTION> {
                 height: 15,
               ),
               InkWell(
-                onTap: () {},
+                onTap: () {
+                  // context
+                  //   .read<FINALMASTERmsg_Bloc>()
+                  //   .add(FINALMASTERmsg_METHODE_EDIT());
+                },
                 child: Container(
                   height: 40,
                   width: 200,

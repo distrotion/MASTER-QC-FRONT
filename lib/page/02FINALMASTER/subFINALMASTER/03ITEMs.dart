@@ -6,6 +6,7 @@ import '../../../model/model.dart';
 import '../../../widget/TABLE/03ITEMStable.dart';
 import '../../../widget/common/Advancedropdown.dart';
 import '../../../widget/common/ComInputText.dart';
+import '../../../widget/common/popup.dart';
 import '../FINALMASTERvar.dart';
 
 class ITEMStable extends StatelessWidget {
@@ -80,9 +81,14 @@ class ITEMStable extends StatelessWidget {
               isACTION: true,
               DeleteFN: (v) {
                 FINALMASTERvar.masterID_ITEMS = _data[i].f21;
-                context
-                    .read<FINALMASTERmsg_Bloc>()
-                    .add(FINALMASTERmsg_ITEMS_DROP());
+                // context
+                //     .read<FINALMASTERmsg_Bloc>()
+                //     .add(FINALMASTERmsg_ITEMS_DROP());
+                POPUPyn(context, (v) {
+                  context
+                      .read<FINALMASTERmsg_Bloc>()
+                      .add(FINALMASTERmsg_ITEMS_DROP());
+                }, "DELETE DATA", 120, 90);
               },
               EditFN: (v) {
                 FINALMASTERvar.TYPEid_ITEMS_ACTION = _data[i].f01;
@@ -258,7 +264,11 @@ class _ITEMSACTIONState extends State<ITEMSACTION> {
               height: 24,
             ),
             InkWell(
-              onTap: () {},
+              onTap: () {
+                // context
+                //     .read<FINALMASTERmsg_Bloc>()
+                //     .add(FINALMASTERmsg_ITEMS_EDIT());
+              },
               child: Container(
                 height: 40,
                 width: 200,

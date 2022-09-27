@@ -6,6 +6,7 @@ import '../../../model/model.dart';
 import '../../../widget/TABLE/02UNITtable.dart';
 import '../../../widget/common/Advancedropdown.dart';
 import '../../../widget/common/ComInputText.dart';
+import '../../../widget/common/popup.dart';
 import '../FINALMASTERvar.dart';
 
 //context.read<FINALMASTER_Bloc>().add(FINALMASTER_UNITget());
@@ -72,9 +73,14 @@ class UNITStable extends StatelessWidget {
               isACTION: true,
               DeleteFN: (v) {
                 FINALMASTERvar.masterID_UNIT = _data[i].f21;
-                context
-                    .read<FINALMASTERmsg_Bloc>()
-                    .add(FINALMASTERmsg_UNIT_DROP());
+                // context
+                //     .read<FINALMASTERmsg_Bloc>()
+                //     .add(FINALMASTERmsg_UNIT_DROP());
+                POPUPyn(context, (v) {
+                  context
+                      .read<FINALMASTERmsg_Bloc>()
+                      .add(FINALMASTERmsg_UNIT_DROP());
+                }, "DELETE DATA", 120, 90);
               },
               EditFN: (v) {
                 FINALMASTERvar.iscontrol = true;
@@ -183,7 +189,11 @@ class _UNITACTIONState extends State<UNITACTION> {
               height: 24,
             ),
             InkWell(
-              onTap: () {},
+              onTap: () {
+                // context
+                //     .read<FINALMASTERmsg_Bloc>()
+                //     .add(FINALMASTERmsg_UNIT_EDIT());
+              },
               child: Container(
                 height: 40,
                 width: 200,

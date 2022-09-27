@@ -6,6 +6,7 @@ import '../../../model/model.dart';
 import '../../../widget/TABLE/06SPECIALSPECtable.dart';
 import '../../../widget/common/Advancedropdown.dart';
 import '../../../widget/common/ComInputText.dart';
+import '../../../widget/common/popup.dart';
 import '../FINALMASTERvar.dart';
 
 class SPECIALSPECtable extends StatelessWidget {
@@ -66,9 +67,14 @@ class SPECIALSPECtable extends StatelessWidget {
               isACTION: true,
               DeleteFN: (v) {
                 FINALMASTERvar.masterID_SPECIALSPEC = _data[i].f21;
-                context
-                    .read<FINALMASTERmsg_Bloc>()
-                    .add(FINALMASTERmsg_SPECIFICATION_DROP());
+                // context
+                //     .read<FINALMASTERmsg_Bloc>()
+                //     .add(FINALMASTERmsg_SPECIFICATION_DROP());
+                POPUPyn(context, (v) {
+                  context
+                      .read<FINALMASTERmsg_Bloc>()
+                      .add(FINALMASTERmsg_SPECIFICATION_DROP());
+                }, "DELETE DATA", 120, 90);
               },
               EditFN: (v) {
                 FINALMASTERvar.ITEM_SPECIALSPEC_ACTION = _data[i].f01;
@@ -176,7 +182,11 @@ class _SPECIALSPECACTIONState extends State<SPECIALSPECACTION> {
             height: 15,
           ),
           InkWell(
-            onTap: () {},
+            onTap: () {
+              // context
+              //     .read<FINALMASTERmsg_Bloc>()
+              //     .add(FINALMASTERmsg_SPECIFICATION_EDIT());
+            },
             child: Container(
               height: 40,
               width: 200,
