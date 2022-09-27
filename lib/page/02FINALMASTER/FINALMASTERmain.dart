@@ -10,6 +10,7 @@ import 'subFINALMASTER/03ITEMs.dart';
 import 'subFINALMASTER/04MACHINENAME.dart';
 import 'subFINALMASTER/05METHODE.dart';
 import 'subFINALMASTER/06SPECIALSPEC.dart';
+import 'subFINALMASTER/07CALCULATE.dart';
 
 late BuildContext FINALMASTERmainCONTEXT;
 
@@ -150,7 +151,7 @@ class _FINALMASTERmainState extends State<FINALMASTERmain> {
                 title: const Text(
                   'CALCULATE',
                 ),
-                content: Container(),
+                content: CALCULATEtable(),
                 isActive: FINALMASTERvar.currentStep == 6,
                 state: FINALMASTERvar.currentStep == 6
                     ? StepState.indexed

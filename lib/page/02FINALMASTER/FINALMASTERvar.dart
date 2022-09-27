@@ -58,4 +58,21 @@ class FINALMASTERvar {
   static String ITEM_SPECIALSPEC_ACTION = '';
   static String SPECIALSPEC_SPECIALSPEC_ACTION = '';
   static String masterID_SPECIALSPEC_ACTION = '';
+
+  //--------CALCULATE
+  static String CALCULATE_CALCULATE_ACTION = '';
+  static String FORMULA_CALCULATE_ACTION = '';
+  static String X_CALCULATE_ACTION = '';
+  static bool Xb_CALCULATE_ACTION = false;
+  static String Y_CALCULATE_ACTION = '';
+  static bool Yb_CALCULATE_ACTION = false;
+  static String Z_CALCULATE_ACTION = '';
+  static bool Zb_CALCULATE_ACTION = false;
+  static String I_CALCULATE_ACTION = '';
+  static bool Ib_CALCULATE_ACTION = false;
+  static String K1_CALCULATE_ACTION = '';
+  static bool K1b_CALCULATE_ACTION = false;
+  static String K2_CALCULATE_ACTION = '';
+  static bool K2b_CALCULATE_ACTION = false;
+  static String masterID_CALCULATE_ACTION = '';
 }
