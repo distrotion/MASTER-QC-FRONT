@@ -204,6 +204,31 @@ class _MACHINENAMEACTIONState extends State<MACHINENAMEACTION> {
                   ],
                 ),
               ),
+              SizedBox(
+                height: 64,
+                width: 400,
+                child: AdvanceDropDown(
+                  sLabel: "DESIMAL",
+                  imgpath: 'assets/icons/icon-down_4@3x.png',
+                  listdropdown: const [
+                    MapEntry("", ""),
+                    MapEntry("0", "0"),
+                    MapEntry("1", "1"),
+                    MapEntry("2", "2"),
+                    MapEntry("3", "3"),
+                    MapEntry("4", "4"),
+                    MapEntry("5", "5"),
+                  ],
+                  onChangeinside: (d, k) {
+                    setState(() {
+                      FINALMASTERvar.DESIMAL_MACHINENAME_ACTION = d;
+                    });
+                  },
+                  value: FINALMASTERvar.DESIMAL_MACHINENAME_ACTION,
+                  height: 40,
+                  width: 400,
+                ),
+              ),
               ComInputText(
                 sLabel: "masterID",
                 height: 40,

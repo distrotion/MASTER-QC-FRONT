@@ -74,13 +74,13 @@ class ITEMstableWidget extends StatelessWidget {
                   tapCell: (v) {},
                 ),
               ),
-              Expanded(
-                flex: 1,
-                child: EACHCELL(
-                  data: DOCUMENTStext ?? "",
-                  tapCell: (v) {},
-                ),
-              ),
+              // Expanded(
+              //   flex: 1,
+              //   child: EACHCELL(
+              //     data: DOCUMENTStext ?? "",
+              //     tapCell: (v) {},
+              //   ),
+              // ),
               Expanded(
                 flex: 1,
                 child: isACTION ?? false

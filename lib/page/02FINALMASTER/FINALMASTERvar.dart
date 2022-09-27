@@ -33,6 +33,7 @@ class FINALMASTERvar {
   //--------UNIT
   static String TYPEid_UNIT_ACTION = '';
   static String UNIT_UNIT_ACTION = '';
+  static String DESIMAL_UNIT_ACTION = '';
   static String masterID_UNIT_ACTION = '';
   //--------ITEMS
   static String TYPEid_ITEMS_ACTION = '';
@@ -45,6 +46,7 @@ class FINALMASTERvar {
   //--------MACHINENAME
   static String METHOD_MACHINENAME_ACTION = '';
   static String MACHINE_MACHINENAME_ACTION = '';
+  static String DESIMAL_MACHINENAME_ACTION = '';
   static String masterID_MACHINENAME_ACTION = '';
   static List<String> MACHINElist_MACHINENAME_ACTION = [];
   //--------METHOD

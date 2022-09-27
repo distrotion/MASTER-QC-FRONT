@@ -229,21 +229,21 @@ class _ITEMSACTIONState extends State<ITEMSACTION> {
                 FINALMASTERvar.GRAPHINTERSECTION_ITEMS_ACTION = s;
               },
             ),
-            ComInputText(
-              sLabel: "DOCUMENTS",
-              height: 40,
-              width: 400,
-              isContr: FINALMASTERvar.iscontrol,
-              fnContr: (input) {
-                setState(() {
-                  FINALMASTERvar.iscontrol = input;
-                });
-              },
-              sValue: FINALMASTERvar.DOCUMENTS_ITEMS_ACTION,
-              returnfunc: (String s) {
-                FINALMASTERvar.DOCUMENTS_ITEMS_ACTION = s;
-              },
-            ),
+            // ComInputText(
+            //   sLabel: "DOCUMENTS",
+            //   height: 40,
+            //   width: 400,
+            //   isContr: FINALMASTERvar.iscontrol,
+            //   fnContr: (input) {
+            //     setState(() {
+            //       FINALMASTERvar.iscontrol = input;
+            //     });
+            //   },
+            //   sValue: FINALMASTERvar.DOCUMENTS_ITEMS_ACTION,
+            //   returnfunc: (String s) {
+            //     FINALMASTERvar.DOCUMENTS_ITEMS_ACTION = s;
+            //   },
+            // ),
             ComInputText(
               sLabel: "masterID",
               height: 40,
