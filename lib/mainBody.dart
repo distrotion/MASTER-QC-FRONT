@@ -18,7 +18,6 @@ late BuildContext LoginContext;
 
 class MainBlocRebuild extends StatelessWidget {
   const MainBlocRebuild({Key? key}) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<BlocPageRebuild, bool>(builder: (_, e) {

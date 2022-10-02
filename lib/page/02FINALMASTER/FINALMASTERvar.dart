@@ -30,6 +30,9 @@ class FINALMASTERvar {
   static String TYPE_TYPE_ACTION = '';
   static String masterID_TYPE_ACTION = '';
 
+  static int TYPE_SORT_F = 0;
+  static int TYPE_SORT_ST = 0;
+
   //--------UNIT
   static String TYPEid_UNIT_ACTION = '';
   static String UNIT_UNIT_ACTION = '';

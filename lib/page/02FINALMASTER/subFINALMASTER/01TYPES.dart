@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../../bloc/BlocEvent/02-1-FINALMASTERget.dart';
 import '../../../bloc/BlocEvent/02-2-FINALMASTERmsg.dart';
+import '../../../bloc/cubit/Rebuild.dart';
 import '../../../model/model.dart';
 import '../../../widget/TABLE/01TYPEtable.dart';
 import '../../../widget/common/ComInputText.dart';
@@ -9,6 +11,8 @@ import '../../../widget/common/popup.dart';
 import '../FINALMASTERvar.dart';
 
 //context.read<FINALMASTER_Bloc>().add(FINALMASTER_TYPEget());
+
+//FINALMASTERmsg_FULSH
 
 class TYPEStable extends StatelessWidget {
   TYPEStable({
@@ -20,6 +24,16 @@ class TYPEStable extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     List<dataset> _data = data ?? [];
+    if (FINALMASTERvar.TYPE_SORT_ST == 0) {
+    } else if (FINALMASTERvar.TYPE_SORT_ST == 1) {
+      if (FINALMASTERvar.TYPE_SORT_F == 0) {
+        _data.sort((a, b) => a.f01.compareTo(b.f01));
+      }
+    } else if (FINALMASTERvar.TYPE_SORT_ST == 2) {
+      if (FINALMASTERvar.TYPE_SORT_F == 0) {
+        _data.sort((b, a) => a.f01.compareTo(b.f01));
+      }
+    }
     return Column(
       children: [
         Align(
@@ -53,6 +67,19 @@ class TYPEStable extends StatelessWidget {
             TYPEtext: "TYPE",
             ACTIONtext: "ACTION",
             masterIDtext: "masterID",
+            F01: (v) {
+              FINALMASTERvar.TYPE_SORT_F = 0;
+              if (FINALMASTERvar.TYPE_SORT_ST == 0) {
+                FINALMASTERvar.TYPE_SORT_ST = 1;
+                context.read<BlocPageRebuild>().rebuildPage();
+              } else if (FINALMASTERvar.TYPE_SORT_ST == 1) {
+                FINALMASTERvar.TYPE_SORT_ST = 2;
+                context.read<BlocPageRebuild>().rebuildPage();
+              } else if (FINALMASTERvar.TYPE_SORT_ST == 2) {
+                FINALMASTERvar.TYPE_SORT_ST = 0;
+                context.read<FINALMASTER_Bloc>().add(FINALMASTER_TYPEget());
+              }
+            },
           ),
         ),
         for (int i = 0; i < _data.length; i++) ...[

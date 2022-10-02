@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../bloc/BlocEvent/02-1-FINALMASTERget.dart';
 import '../bloc/BlocEvent/02-2-FINALMASTERmsg.dart';
 import '../bloc/BlocEvent/02-3-FINALMASTERdropdown.dart';
+import '../bloc/cubit/Rebuild.dart';
 import '02FINALMASTER/FINALMASTERmain.dart';
 
 class Page2 extends StatelessWidget {
@@ -11,7 +12,20 @@ class Page2 extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Page2BlocTableBody();
+    return Page2REBUILD();
+  }
+}
+
+class Page2REBUILD extends StatelessWidget {
+  const Page2REBUILD({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocBuilder<BlocPageRebuild, bool>(
+      builder: (_, e) {
+        return Page2BlocTableBody();
+      },
+    );
   }
 }
 

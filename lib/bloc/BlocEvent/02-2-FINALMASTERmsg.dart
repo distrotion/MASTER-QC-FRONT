@@ -37,6 +37,10 @@ class FINALMASTERmsg_METHODE_EDIT extends FINALMASTERmsg_Event {}
 
 class FINALMASTERmsg_SPECIFICATION_EDIT extends FINALMASTERmsg_Event {}
 
+//------------------------------------------------------------------
+
+class FINALMASTERmsg_FULSH extends FINALMASTERmsg_Event {}
+
 class FINALMASTERmsg_Bloc extends Bloc<FINALMASTERmsg_Event, String> {
   FINALMASTERmsg_Bloc() : super('') {
     on<FINALMASTERmsg_TYPE_DROP>((event, emit) {
@@ -87,6 +91,12 @@ class FINALMASTERmsg_Bloc extends Bloc<FINALMASTERmsg_Event, String> {
 
     on<FINALMASTERmsg_SPECIFICATION_EDIT>((event, emit) {
       return _FINALMASTERmsg_SPECIFICATION_EDIT('', emit);
+    });
+
+    //
+
+    on<FINALMASTERmsg_FULSH>((event, emit) {
+      return _FINALMASTERmsg_FULSH('', emit);
     });
   }
 
@@ -258,6 +268,14 @@ class FINALMASTERmsg_Bloc extends Bloc<FINALMASTERmsg_Event, String> {
     );
     FINALMASTERmainCONTEXT.read<FINALMASTER_Bloc>()
         .add(FINALMASTER_SPECIALSPECget());
+    emit(output);
+  }
+
+  //
+
+  Future<void> _FINALMASTERmsg_FULSH(String toAdd, Emitter<String> emit) async {
+    String output = '';
+
     emit(output);
   }
 }
