@@ -38,6 +38,10 @@ class FINALMASTERvar {
   static String UNIT_UNIT_ACTION = '';
   static String DESIMAL_UNIT_ACTION = '';
   static String masterID_UNIT_ACTION = '';
+
+  static int UNIT_SORT_F = 0;
+  static int UNIT_SORT_ST = 0;
+
   //--------ITEMS
   static String TYPEid_ITEMS_ACTION = '';
   static String ITEMS_ITEMS_ACTION = '';
@@ -46,21 +50,36 @@ class FINALMASTERvar {
   static String GRAPHINTERSECTION_ITEMS_ACTION = '';
   static String DOCUMENTS_ITEMS_ACTION = '';
   static String masterID_ITEMS_ACTION = '';
+
+  static int ITEMS_SORT_F = 0;
+  static int ITEMS_SORT_ST = 0;
+
   //--------MACHINENAME
   static String METHOD_MACHINENAME_ACTION = '';
   static String MACHINE_MACHINENAME_ACTION = '';
   static String DESIMAL_MACHINENAME_ACTION = '';
   static String masterID_MACHINENAME_ACTION = '';
   static List<String> MACHINElist_MACHINENAME_ACTION = [];
+
+  static int MACHINENAME_SORT_F = 0;
+  static int MACHINENAME_SORT_ST = 0;
+
   //--------METHOD
   static String ITEM_METHOD_ACTION = '';
   static String METHOD_METHOD_ACTION = '';
   static String DOCUMENT_METHOD_ACTION = '';
   static String masterID_METHOD_ACTION = '';
-  //--------METHOD
+
+  static int METHOD_SORT_F = 0;
+  static int METHOD_SORT_ST = 0;
+
+  //--------SPECIALSPEC
   static String ITEM_SPECIALSPEC_ACTION = '';
   static String SPECIALSPEC_SPECIALSPEC_ACTION = '';
   static String masterID_SPECIALSPEC_ACTION = '';
+
+  static int SPECIALSPEC_SORT_F = 0;
+  static int SPECIALSPEC_SORT_ST = 0;
 
   //--------CALCULATE
   static String CALCULATE_CALCULATE_ACTION = '';
@@ -78,4 +97,7 @@ class FINALMASTERvar {
   static String K2_CALCULATE_ACTION = '';
   static bool K2b_CALCULATE_ACTION = false;
   static String masterID_CALCULATE_ACTION = '';
+
+  static int CALCULATE_SORT_F = 0;
+  static int CALCULATE_SORT_ST = 0;
 }

@@ -14,6 +14,8 @@ class UNITtableWidget extends StatelessWidget {
     this.masterIDtext,
     this.EditFN,
     this.DeleteFN,
+    this.F01,
+    this.F02,
   });
   Color? BGColorMain;
   String? TYPEtext;
@@ -24,6 +26,9 @@ class UNITtableWidget extends StatelessWidget {
   String? masterIDtext;
   Function(String)? EditFN;
   Function(String)? DeleteFN;
+
+  Function(String)? F01;
+  Function(String)? F02;
 
   @override
   Widget build(BuildContext context) {
@@ -38,14 +43,22 @@ class UNITtableWidget extends StatelessWidget {
                 flex: 1,
                 child: EACHCELL(
                   data: TYPEtext ?? "",
-                  tapCell: (v) {},
+                  tapCell: (v) {
+                    if (F01 != null) {
+                      F01!("F01");
+                    }
+                  },
                 ),
               ),
               Expanded(
                 flex: 1,
                 child: EACHCELL(
                   data: UNITtext ?? "",
-                  tapCell: (v) {},
+                  tapCell: (v) {
+                    if (F02 != null) {
+                      F02!("F02");
+                    }
+                  },
                 ),
               ),
               Expanded(

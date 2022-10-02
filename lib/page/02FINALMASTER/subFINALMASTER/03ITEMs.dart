@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../../bloc/BlocEvent/02-1-FINALMASTERget.dart';
 import '../../../bloc/BlocEvent/02-2-FINALMASTERmsg.dart';
+import '../../../bloc/cubit/Rebuild.dart';
 import '../../../model/model.dart';
 import '../../../widget/TABLE/03ITEMStable.dart';
 import '../../../widget/common/Advancedropdown.dart';
@@ -21,6 +23,24 @@ class ITEMStable extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     List<dataset> _data = data ?? [];
+    if (FINALMASTERvar.ITEMS_SORT_ST == 0) {
+    } else if (FINALMASTERvar.ITEMS_SORT_ST == 1) {
+      if (FINALMASTERvar.ITEMS_SORT_F == 0) {
+        _data.sort((a, b) => a.f11.compareTo(b.f11));
+      } else if (FINALMASTERvar.ITEMS_SORT_F == 1) {
+        _data.sort((a, b) => a.f02.compareTo(b.f02));
+      } else if (FINALMASTERvar.ITEMS_SORT_F == 2) {
+        _data.sort((a, b) => a.f03.compareTo(b.f03));
+      }
+    } else if (FINALMASTERvar.ITEMS_SORT_ST == 2) {
+      if (FINALMASTERvar.ITEMS_SORT_F == 0) {
+        _data.sort((b, a) => a.f11.compareTo(b.f11));
+      } else if (FINALMASTERvar.ITEMS_SORT_F == 1) {
+        _data.sort((b, a) => a.f02.compareTo(b.f02));
+      } else if (FINALMASTERvar.ITEMS_SORT_F == 2) {
+        _data.sort((b, a) => a.f03.compareTo(b.f03));
+      }
+    }
     return Column(
       children: [
         Align(
@@ -63,6 +83,45 @@ class ITEMStable extends StatelessWidget {
             DOCUMENTStext: "DOCUMENTS",
             ACTIONtext: "ACTION",
             masterIDtext: "masterID",
+            F01: (v) {
+              FINALMASTERvar.ITEMS_SORT_F = 0;
+              if (FINALMASTERvar.ITEMS_SORT_ST == 0) {
+                FINALMASTERvar.ITEMS_SORT_ST = 1;
+                context.read<BlocPageRebuild>().rebuildPage();
+              } else if (FINALMASTERvar.ITEMS_SORT_ST == 1) {
+                FINALMASTERvar.ITEMS_SORT_ST = 2;
+                context.read<BlocPageRebuild>().rebuildPage();
+              } else if (FINALMASTERvar.ITEMS_SORT_ST == 2) {
+                FINALMASTERvar.ITEMS_SORT_ST = 0;
+                context.read<FINALMASTER_Bloc>().add(FINALMASTER_ITEMSget());
+              }
+            },
+            F02: (v) {
+              FINALMASTERvar.ITEMS_SORT_F = 1;
+              if (FINALMASTERvar.ITEMS_SORT_ST == 0) {
+                FINALMASTERvar.ITEMS_SORT_ST = 1;
+                context.read<BlocPageRebuild>().rebuildPage();
+              } else if (FINALMASTERvar.ITEMS_SORT_ST == 1) {
+                FINALMASTERvar.ITEMS_SORT_ST = 2;
+                context.read<BlocPageRebuild>().rebuildPage();
+              } else if (FINALMASTERvar.ITEMS_SORT_ST == 2) {
+                FINALMASTERvar.ITEMS_SORT_ST = 0;
+                context.read<FINALMASTER_Bloc>().add(FINALMASTER_ITEMSget());
+              }
+            },
+            F03: (v) {
+              FINALMASTERvar.ITEMS_SORT_F = 2;
+              if (FINALMASTERvar.ITEMS_SORT_ST == 0) {
+                FINALMASTERvar.ITEMS_SORT_ST = 1;
+                context.read<BlocPageRebuild>().rebuildPage();
+              } else if (FINALMASTERvar.ITEMS_SORT_ST == 1) {
+                FINALMASTERvar.ITEMS_SORT_ST = 2;
+                context.read<BlocPageRebuild>().rebuildPage();
+              } else if (FINALMASTERvar.ITEMS_SORT_ST == 2) {
+                FINALMASTERvar.ITEMS_SORT_ST = 0;
+                context.read<FINALMASTER_Bloc>().add(FINALMASTER_ITEMSget());
+              }
+            },
           ),
         ),
         for (int i = 0; i < _data.length; i++) ...[

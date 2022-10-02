@@ -17,6 +17,9 @@ class ITEMstableWidget extends StatelessWidget {
     this.masterIDtext,
     this.EditFN,
     this.DeleteFN,
+    this.F01,
+    this.F02,
+    this.F03,
   });
   Color? BGColorMain;
   String? TYPEtext;
@@ -30,6 +33,11 @@ class ITEMstableWidget extends StatelessWidget {
   String? masterIDtext;
   Function(String)? EditFN;
   Function(String)? DeleteFN;
+
+  Function(String)? F01;
+  Function(String)? F02;
+  Function(String)? F03;
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -43,21 +51,33 @@ class ITEMstableWidget extends StatelessWidget {
                 flex: 1,
                 child: EACHCELL(
                   data: TYPEtext ?? "",
-                  tapCell: (v) {},
+                  tapCell: (v) {
+                    if (F01 != null) {
+                      F01!("F01");
+                    }
+                  },
                 ),
               ),
               Expanded(
                 flex: 2,
                 child: EACHCELL(
                   data: ITEMstext ?? "",
-                  tapCell: (v) {},
+                  tapCell: (v) {
+                    if (F02 != null) {
+                      F02!("F02");
+                    }
+                  },
                 ),
               ),
               Expanded(
                 flex: 1,
                 child: EACHCELL(
                   data: RESULTFORMATtext ?? "",
-                  tapCell: (v) {},
+                  tapCell: (v) {
+                    if (F03 != null) {
+                      F03!("F03");
+                    }
+                  },
                 ),
               ),
               Expanded(
