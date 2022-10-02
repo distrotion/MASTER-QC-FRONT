@@ -13,6 +13,8 @@ class SPECIALSPECtableWidget extends StatelessWidget {
     this.masterIDtext,
     this.EditFN,
     this.DeleteFN,
+    this.F01,
+    this.F02,
   });
   Color? BGColorMain;
   String? ITEMstext;
@@ -22,6 +24,8 @@ class SPECIALSPECtableWidget extends StatelessWidget {
   String? masterIDtext;
   Function(String)? EditFN;
   Function(String)? DeleteFN;
+  Function(String)? F01;
+  Function(String)? F02;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -35,14 +39,22 @@ class SPECIALSPECtableWidget extends StatelessWidget {
                 flex: 1,
                 child: EACHCELL(
                   data: ITEMstext ?? "",
-                  tapCell: (v) {},
+                  tapCell: (v) {
+                    if (F01 != null) {
+                      F01!("F01");
+                    }
+                  },
                 ),
               ),
               Expanded(
                 flex: 1,
                 child: EACHCELL(
                   data: SPECIFICATIONtext ?? "",
-                  tapCell: (v) {},
+                  tapCell: (v) {
+                    if (F02 != null) {
+                      F02!("F02");
+                    }
+                  },
                 ),
               ),
               Expanded(

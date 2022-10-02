@@ -1,16 +1,34 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../../bloc/BlocEvent/02-1-FINALMASTERget.dart';
+import '../../../bloc/cubit/Rebuild.dart';
+import '../../../model/model.dart';
 import '../../../widget/TABLE/07CALCULATEtable.dart';
 import '../../../widget/common/CheckboxC.dart';
 import '../../../widget/common/ComInputText.dart';
 import '../FINALMASTERvar.dart';
 
 class CALCULATEtable extends StatelessWidget {
-  const CALCULATEtable({super.key});
+  CALCULATEtable({
+    super.key,
+    this.data,
+  });
+  List<dataset>? data;
 
   @override
   Widget build(BuildContext context) {
+    List<dataset> _data = data ?? [];
+    if (FINALMASTERvar.CALCULATE_SORT_ST == 0) {
+    } else if (FINALMASTERvar.CALCULATE_SORT_ST == 1) {
+      if (FINALMASTERvar.CALCULATE_SORT_F == 0) {
+        _data.sort((a, b) => a.f01.compareTo(b.f01));
+      }
+    } else if (FINALMASTERvar.CALCULATE_SORT_ST == 2) {
+      if (FINALMASTERvar.CALCULATE_SORT_F == 0) {
+        _data.sort((b, a) => a.f01.compareTo(b.f01));
+      }
+    }
     return Column(
       children: [
         Align(
@@ -42,6 +60,21 @@ class CALCULATEtable extends StatelessWidget {
             FORMULAtext: " FORMULA",
             ACTIONtext: "ACTION",
             masterIDtext: "masterID",
+            F01: (v) {
+              FINALMASTERvar.CALCULATE_SORT_F = 0;
+              if (FINALMASTERvar.CALCULATE_SORT_ST == 0) {
+                FINALMASTERvar.CALCULATE_SORT_ST = 1;
+                context.read<BlocPageRebuild>().rebuildPage();
+              } else if (FINALMASTERvar.CALCULATE_SORT_ST == 1) {
+                FINALMASTERvar.CALCULATE_SORT_ST = 2;
+                context.read<BlocPageRebuild>().rebuildPage();
+              } else if (FINALMASTERvar.CALCULATE_SORT_ST == 2) {
+                FINALMASTERvar.CALCULATE_SORT_ST = 0;
+                context
+                    .read<FINALMASTER_Bloc>()
+                    .add(FINALMASTER_CALCULATEget());
+              }
+            },
           ),
         ),
         for (int i = 1; i < 10; i++)

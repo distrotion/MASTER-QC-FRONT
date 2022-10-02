@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../../bloc/BlocEvent/02-1-FINALMASTERget.dart';
 import '../../../bloc/BlocEvent/02-2-FINALMASTERmsg.dart';
+import '../../../bloc/cubit/Rebuild.dart';
 import '../../../model/model.dart';
 import '../../../widget/TABLE/04MACHINENAMEtable.dart';
 import '../../../widget/TABLE/08MINITABLE.dart';
@@ -20,6 +22,20 @@ class MACHINENAMEtable extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     List<dataset> _data = data ?? [];
+    if (FINALMASTERvar.MACHINENAME_SORT_ST == 0) {
+    } else if (FINALMASTERvar.MACHINENAME_SORT_ST == 1) {
+      if (FINALMASTERvar.MACHINENAME_SORT_F == 0) {
+        _data.sort((a, b) => a.f11.compareTo(b.f11));
+      } else if (FINALMASTERvar.MACHINENAME_SORT_F == 1) {
+        _data.sort((a, b) => a.f02.compareTo(b.f02));
+      }
+    } else if (FINALMASTERvar.MACHINENAME_SORT_ST == 2) {
+      if (FINALMASTERvar.MACHINENAME_SORT_F == 0) {
+        _data.sort((b, a) => a.f11.compareTo(b.f11));
+      } else if (FINALMASTERvar.MACHINENAME_SORT_F == 1) {
+        _data.sort((b, a) => a.f02.compareTo(b.f02));
+      }
+    }
     return Column(
       children: [
         Align(
@@ -56,6 +72,36 @@ class MACHINENAMEtable extends StatelessWidget {
             DESIMALtext: "DESIMAL",
             ACTIONtext: "ACTION",
             masterIDtext: "masterID",
+            F01: (v) {
+              FINALMASTERvar.MACHINENAME_SORT_F = 0;
+              if (FINALMASTERvar.MACHINENAME_SORT_ST == 0) {
+                FINALMASTERvar.MACHINENAME_SORT_ST = 1;
+                context.read<BlocPageRebuild>().rebuildPage();
+              } else if (FINALMASTERvar.MACHINENAME_SORT_ST == 1) {
+                FINALMASTERvar.MACHINENAME_SORT_ST = 2;
+                context.read<BlocPageRebuild>().rebuildPage();
+              } else if (FINALMASTERvar.MACHINENAME_SORT_ST == 2) {
+                FINALMASTERvar.MACHINENAME_SORT_ST = 0;
+                context
+                    .read<FINALMASTER_Bloc>()
+                    .add(FINALMASTER_MACHINENAMEget());
+              }
+            },
+            F02: (v) {
+              FINALMASTERvar.MACHINENAME_SORT_F = 1;
+              if (FINALMASTERvar.MACHINENAME_SORT_ST == 0) {
+                FINALMASTERvar.MACHINENAME_SORT_ST = 1;
+                context.read<BlocPageRebuild>().rebuildPage();
+              } else if (FINALMASTERvar.MACHINENAME_SORT_ST == 1) {
+                FINALMASTERvar.MACHINENAME_SORT_ST = 2;
+                context.read<BlocPageRebuild>().rebuildPage();
+              } else if (FINALMASTERvar.MACHINENAME_SORT_ST == 2) {
+                FINALMASTERvar.MACHINENAME_SORT_ST = 0;
+                context
+                    .read<FINALMASTER_Bloc>()
+                    .add(FINALMASTER_MACHINENAMEget());
+              }
+            },
           ),
         ),
         for (int i = 0; i < _data.length; i++) ...[

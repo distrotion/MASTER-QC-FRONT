@@ -22,6 +22,8 @@ class FINALMASTER_METHODEget extends FINALMASTER_Event {}
 
 class FINALMASTER_SPECIALSPECget extends FINALMASTER_Event {}
 
+class FINALMASTER_CALCULATEget extends FINALMASTER_Event {}
+
 class FINALMASTER_Bloc extends Bloc<FINALMASTER_Event, DatasetWithSatatus> {
   FINALMASTER_Bloc() : super(DatasetWithSatatus(data: [])) {
     on<FINALMASTER_TYPEget>((event, emit) {
@@ -45,6 +47,10 @@ class FINALMASTER_Bloc extends Bloc<FINALMASTER_Event, DatasetWithSatatus> {
 
     on<FINALMASTER_SPECIALSPECget>((event, emit) {
       return _FINALMASTER_SPECIALSPECget(DatasetWithSatatus(data: []), emit);
+    });
+
+    on<FINALMASTER_CALCULATEget>((event, emit) {
+      return _FINALMASTER_CALCULATEget(DatasetWithSatatus(data: []), emit);
     });
   }
   Future<void> _FINALMASTER_TYPEget(
@@ -355,6 +361,18 @@ class FINALMASTER_Bloc extends Bloc<FINALMASTER_Event, DatasetWithSatatus> {
     } else {
       //
     }
+
+    emit(output);
+  }
+
+  Future<void> _FINALMASTER_CALCULATEget(
+      DatasetWithSatatus toAdd, Emitter<DatasetWithSatatus> emit) async {
+    //--------------------------------------------------------
+    DatasetWithSatatus output = DatasetWithSatatus(
+      status: "",
+      position: "",
+      data: [],
+    );
 
     emit(output);
   }

@@ -13,6 +13,7 @@ class CALCULATEtableWidget extends StatelessWidget {
     this.masterIDtext,
     this.EditFN,
     this.DeleteFN,
+    this.F01,
   });
   Color? BGColorMain;
   String? CALCULATEtext;
@@ -22,6 +23,7 @@ class CALCULATEtableWidget extends StatelessWidget {
   String? masterIDtext;
   Function(String)? EditFN;
   Function(String)? DeleteFN;
+  Function(String)? F01;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -35,7 +37,11 @@ class CALCULATEtableWidget extends StatelessWidget {
                 flex: 1,
                 child: EACHCELL(
                   data: CALCULATEtext ?? "",
-                  tapCell: (v) {},
+                  tapCell: (v) {
+                    if (F01 != null) {
+                      F01!("F01");
+                    }
+                  },
                 ),
               ),
               Expanded(
