@@ -128,6 +128,9 @@ class FINALMASTER_Bloc extends Bloc<FINALMASTER_Event, DatasetWithSatatus> {
             f02: databuff[i]['UNIT'] != null
                 ? databuff[i]['UNIT'].toString()
                 : "",
+            f03: databuff[i]['DESIMAL'] != null
+                ? databuff[i]['DESIMAL'].toString()
+                : "",
             f11: databuff[i]['TYPEname'] != null
                 ? databuff[i]['TYPEname'].toString()
                 : "",
@@ -248,6 +251,9 @@ class FINALMASTER_Bloc extends Bloc<FINALMASTER_Event, DatasetWithSatatus> {
                 ? databuff[i]['METHOD'].toString()
                 : "",
             f02: MACHINEdata,
+            f03: databuff[i]['DESIMAL'] != null
+                ? databuff[i]['DESIMAL'].toString()
+                : "",
             f21: databuff[i]['masterID'] != null
                 ? databuff[i]['masterID'].toString()
                 : "",
@@ -373,6 +379,63 @@ class FINALMASTER_Bloc extends Bloc<FINALMASTER_Event, DatasetWithSatatus> {
       position: "",
       data: [],
     );
+
+    final response = await Dio().post(
+      server + "GET_CALCULATEget_FINAL",
+      data: {},
+    );
+
+    if (response.statusCode == 200) {
+      // var databuff = jsonDecode(response.body);
+      var databuff = response.data;
+      // print(databuff);
+      output = DatasetWithSatatus(
+        status: "OK",
+        position: "CALCULATEget",
+        data: [],
+      );
+
+      if (databuff.length > 0) {
+        for (int i = 0; i < databuff.length; i++) {
+          output.data.add(dataset(
+            id: i,
+            f01: databuff[i]['CALCULATE'] != null
+                ? databuff[i]['CALCULATE'].toString()
+                : "",
+            f02: databuff[i]['FORMULA'] != null
+                ? databuff[i]['FORMULA'].toString()
+                : "",
+
+            //
+            f41: databuff[i]['X'] != null ? databuff[i]['X'].toString() : "",
+            f42: databuff[i]['Y'] != null ? databuff[i]['Y'].toString() : "",
+            f43: databuff[i]['Z'] != null ? databuff[i]['Z'].toString() : "",
+            f44: databuff[i]['I'] != null ? databuff[i]['I'].toString() : "",
+            f45: databuff[i]['K1'] != null ? databuff[i]['K1'].toString() : "",
+            f46: databuff[i]['K2'] != null ? databuff[i]['K2'].toString() : "",
+            f47: databuff[i]['K3'] != null ? databuff[i]['K3'].toString() : "",
+            //
+            f51: databuff[i]['Xb'] != null ? databuff[i]['Xb'].toString() : "",
+            f52: databuff[i]['Yb'] != null ? databuff[i]['Yb'].toString() : "",
+            f53: databuff[i]['Zb'] != null ? databuff[i]['Zb'].toString() : "",
+            f54: databuff[i]['Ib'] != null ? databuff[i]['Ib'].toString() : "",
+            f55:
+                databuff[i]['K1b'] != null ? databuff[i]['K1b'].toString() : "",
+            f56:
+                databuff[i]['K2b'] != null ? databuff[i]['K2b'].toString() : "",
+            f57:
+                databuff[i]['K3b'] != null ? databuff[i]['K4b'].toString() : "",
+            //
+
+            f21: databuff[i]['masterID'] != null
+                ? databuff[i]['masterID'].toString()
+                : "",
+          ));
+        }
+      }
+    } else {
+      //
+    }
 
     emit(output);
   }

@@ -11,6 +11,8 @@ import '../../../widget/common/ComInputText.dart';
 import '../../../widget/common/popup.dart';
 import '../FINALMASTERvar.dart';
 
+late BuildContext ITEMStablecontext;
+
 class ITEMStable extends StatelessWidget {
   ITEMStable({
     super.key,
@@ -22,6 +24,7 @@ class ITEMStable extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    ITEMStablecontext = context;
     List<dataset> _data = data ?? [];
     if (FINALMASTERvar.ITEMS_SORT_ST == 0) {
     } else if (FINALMASTERvar.ITEMS_SORT_ST == 1) {
@@ -81,6 +84,7 @@ class ITEMStable extends StatelessWidget {
             GRAPHTYPEtext: " GRAPH TYPE",
             GRAPHINTERSECTIONtext: "GRAPH INTERSECTION",
             DOCUMENTStext: "DOCUMENTS",
+            CALtext: "CAL_P",
             ACTIONtext: "ACTION",
             masterIDtext: "masterID",
             F01: (v) {
@@ -136,6 +140,7 @@ class ITEMStable extends StatelessWidget {
               GRAPHTYPEtext: _data[i].f04,
               GRAPHINTERSECTIONtext: _data[i].f05,
               DOCUMENTStext: _data[i].f06,
+              CALtext: "",
               ACTIONtext: "ACTION",
               isACTION: true,
               DeleteFN: (v) {
@@ -324,9 +329,8 @@ class _ITEMSACTIONState extends State<ITEMSACTION> {
             ),
             InkWell(
               onTap: () {
-                // context
-                //     .read<FINALMASTERmsg_Bloc>()
-                //     .add(FINALMASTERmsg_ITEMS_EDIT());
+                ITEMStablecontext.read<FINALMASTERmsg_Bloc>()
+                    .add(FINALMASTERmsg_ITEMS_EDIT());
               },
               child: Container(
                 height: 40,

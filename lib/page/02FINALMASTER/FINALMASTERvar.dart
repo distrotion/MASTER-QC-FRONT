@@ -96,8 +96,12 @@ class FINALMASTERvar {
   static bool K1b_CALCULATE_ACTION = false;
   static String K2_CALCULATE_ACTION = '';
   static bool K2b_CALCULATE_ACTION = false;
+  static String K3_CALCULATE_ACTION = '';
+  static bool K3b_CALCULATE_ACTION = false;
   static String masterID_CALCULATE_ACTION = '';
 
   static int CALCULATE_SORT_F = 0;
   static int CALCULATE_SORT_ST = 0;
+
+  //--------
 }

@@ -14,6 +14,8 @@ import '../FINALMASTERvar.dart';
 
 //FINALMASTERmsg_FULSH
 
+late BuildContext TYPEStableContext;
+
 class TYPEStable extends StatelessWidget {
   TYPEStable({
     super.key,
@@ -23,6 +25,7 @@ class TYPEStable extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    TYPEStableContext = context;
     List<dataset> _data = data ?? [];
     if (FINALMASTERvar.TYPE_SORT_ST == 0) {
     } else if (FINALMASTERvar.TYPE_SORT_ST == 1) {
@@ -190,9 +193,8 @@ class _TYPEACTIONState extends State<TYPEACTION> {
           ),
           InkWell(
             onTap: () {
-              // context
-              //     .read<FINALMASTERmsg_Bloc>()
-              //     .add(FINALMASTERmsg_TYPE_EDIT());
+              TYPEStableContext.read<FINALMASTERmsg_Bloc>()
+                  .add(FINALMASTERmsg_TYPE_EDIT());
             },
             child: Container(
               height: 40,

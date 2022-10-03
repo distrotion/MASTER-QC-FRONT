@@ -12,6 +12,8 @@ import '../../../widget/common/ComInputText.dart';
 import '../../../widget/common/popup.dart';
 import '../FINALMASTERvar.dart';
 
+late BuildContext MACHINENAMEtablecontext;
+
 class MACHINENAMEtable extends StatelessWidget {
   MACHINENAMEtable({
     super.key,
@@ -21,6 +23,7 @@ class MACHINENAMEtable extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    MACHINENAMEtablecontext = context;
     List<dataset> _data = data ?? [];
     if (FINALMASTERvar.MACHINENAME_SORT_ST == 0) {
     } else if (FINALMASTERvar.MACHINENAME_SORT_ST == 1) {
@@ -44,6 +47,7 @@ class MACHINENAMEtable extends StatelessWidget {
             onTap: () {
               FINALMASTERvar.METHOD_MACHINENAME_ACTION = '';
               FINALMASTERvar.MACHINE_MACHINENAME_ACTION = '';
+              FINALMASTERvar.DESIMAL_MACHINENAME_ACTION = '';
               FINALMASTERvar.masterID_MACHINENAME_ACTION = '';
               FINALMASTERvar.MACHINElist_MACHINENAME_ACTION = [];
               MACHINENAMEPOPUP(context);
@@ -112,7 +116,7 @@ class MACHINENAMEtable extends StatelessWidget {
                   i.isEven ? Colors.grey.shade50 : Colors.grey.shade200,
               METHODtext: _data[i].f01,
               MACHINEtext: _data[i].f02,
-              DESIMALtext: "",
+              DESIMALtext: _data[i].f03,
               ACTIONtext: "ACTION",
               isACTION: true,
               DeleteFN: (v) {
@@ -129,9 +133,12 @@ class MACHINENAMEtable extends StatelessWidget {
               EditFN: (v) {
                 FINALMASTERvar.METHOD_MACHINENAME_ACTION = _data[i].f01;
                 FINALMASTERvar.MACHINE_MACHINENAME_ACTION = '';
+                FINALMASTERvar.DESIMAL_MACHINENAME_ACTION = _data[i].f03;
                 FINALMASTERvar.masterID_MACHINENAME_ACTION = _data[i].f21;
                 FINALMASTERvar.MACHINElist_MACHINENAME_ACTION =
                     _data[i].f02.split(',');
+
+                print(FINALMASTERvar.MACHINElist_MACHINENAME_ACTION);
 
                 MACHINENAMEPOPUP(context);
               },
@@ -296,9 +303,8 @@ class _MACHINENAMEACTIONState extends State<MACHINENAMEACTION> {
               ),
               InkWell(
                 onTap: () {
-                  // context
-                  //     .read<FINALMASTERmsg_Bloc>()
-                  //     .add(FINALMASTERmsg_MACHINENAME_EDIT());
+                  MACHINENAMEtablecontext.read<FINALMASTERmsg_Bloc>()
+                      .add(FINALMASTERmsg_MACHINENAME_EDIT());
                 },
                 child: Container(
                   height: 40,

@@ -62,6 +62,9 @@ class _FINALMASTERmainState extends State<FINALMASTERmain> {
     if (_data.position == 'SPECIALSPECget') {
       FINALMASTERvar.SPECIALSPECget = _data.data;
     }
+    if (_data.position == 'CALCULATEget') {
+      FINALMASTERvar.CALCULATEget = _data.data;
+    }
     FINALMASTERvar.TYPEddBUFF = widget.DD!.TYPEdd;
     FINALMASTERvar.ITEMSddBUFF = widget.DD!.ITEMSdd;
     FINALMASTERvar.METHODddBUFF = widget.DD!.METHODdd;
@@ -151,7 +154,9 @@ class _FINALMASTERmainState extends State<FINALMASTERmain> {
                 title: const Text(
                   'CALCULATE',
                 ),
-                content: CALCULATEtable(),
+                content: CALCULATEtable(
+                  data: FINALMASTERvar.CALCULATEget,
+                ),
                 isActive: FINALMASTERvar.currentStep == 6,
                 state: FINALMASTERvar.currentStep == 6
                     ? StepState.indexed
@@ -194,7 +199,11 @@ class _FINALMASTERmainState extends State<FINALMASTERmain> {
         context.read<FINALMASTER_Bloc>().add(FINALMASTER_METHODEget());
       } else if (step == 5) {
         context.read<FINALMASTER_Bloc>().add(FINALMASTER_SPECIALSPECget());
+      } else if (step == 6) {
+        context.read<FINALMASTER_Bloc>().add(FINALMASTER_CALCULATEget());
       }
+
+      //FINALMASTER_CALCULATEget
       FINALMASTERvar.currentStep = step;
     });
   }

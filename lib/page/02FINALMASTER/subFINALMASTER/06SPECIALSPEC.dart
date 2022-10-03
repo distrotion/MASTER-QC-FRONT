@@ -11,6 +11,8 @@ import '../../../widget/common/ComInputText.dart';
 import '../../../widget/common/popup.dart';
 import '../FINALMASTERvar.dart';
 
+late BuildContext SPECIALSPECtablecontext;
+
 class SPECIALSPECtable extends StatelessWidget {
   SPECIALSPECtable({
     super.key,
@@ -20,6 +22,7 @@ class SPECIALSPECtable extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    SPECIALSPECtablecontext = context;
     List<dataset> _data = data ?? [];
     if (FINALMASTERvar.SPECIALSPEC_SORT_ST == 0) {
     } else if (FINALMASTERvar.SPECIALSPEC_SORT_ST == 1) {
@@ -229,9 +232,8 @@ class _SPECIALSPECACTIONState extends State<SPECIALSPECACTION> {
           ),
           InkWell(
             onTap: () {
-              // context
-              //     .read<FINALMASTERmsg_Bloc>()
-              //     .add(FINALMASTERmsg_SPECIFICATION_EDIT());
+              SPECIALSPECtablecontext.read<FINALMASTERmsg_Bloc>()
+                  .add(FINALMASTERmsg_SPECIFICATION_EDIT());
             },
             child: Container(
               height: 40,

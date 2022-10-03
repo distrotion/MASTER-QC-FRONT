@@ -12,6 +12,7 @@ class ITEMstableWidget extends StatelessWidget {
     this.GRAPHTYPEtext,
     this.GRAPHINTERSECTIONtext,
     this.DOCUMENTStext,
+    this.CALtext,
     this.ACTIONtext,
     this.isACTION,
     this.masterIDtext,
@@ -28,6 +29,7 @@ class ITEMstableWidget extends StatelessWidget {
   String? GRAPHTYPEtext;
   String? GRAPHINTERSECTIONtext;
   String? DOCUMENTStext;
+  String? CALtext;
   String? ACTIONtext;
   bool? isACTION;
   String? masterIDtext;
@@ -94,6 +96,14 @@ class ITEMstableWidget extends StatelessWidget {
                   tapCell: (v) {},
                 ),
               ),
+              //CALtext
+              Expanded(
+                flex: 1,
+                child: EACHCELL(
+                  data: CALtext ?? "",
+                  tapCell: (v) {},
+                ),
+              ),
               // Expanded(
               //   flex: 1,
               //   child: EACHCELL(
@@ -118,7 +128,7 @@ class ITEMstableWidget extends StatelessWidget {
                       ),
               ),
               Expanded(
-                flex: 1,
+                flex: 2,
                 child: EACHCELL(
                   data: masterIDtext ?? "",
                   tapCell: (v) {},

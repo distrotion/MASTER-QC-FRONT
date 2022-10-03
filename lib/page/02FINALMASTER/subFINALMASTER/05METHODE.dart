@@ -11,6 +11,8 @@ import '../../../widget/common/ComInputText.dart';
 import '../../../widget/common/popup.dart';
 import '../FINALMASTERvar.dart';
 
+late BuildContext METHODtablecontext;
+
 class METHODtable extends StatelessWidget {
   METHODtable({
     super.key,
@@ -24,6 +26,7 @@ class METHODtable extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    METHODtablecontext = context;
     List<dataset> _data = data ?? [];
     if (FINALMASTERvar.METHOD_SORT_ST == 0) {
     } else if (FINALMASTERvar.METHOD_SORT_ST == 1) {
@@ -267,9 +270,8 @@ class _METHODACTIONState extends State<METHODACTION> {
               ),
               InkWell(
                 onTap: () {
-                  // context
-                  //   .read<FINALMASTERmsg_Bloc>()
-                  //   .add(FINALMASTERmsg_METHODE_EDIT());
+                  METHODtablecontext.read<FINALMASTERmsg_Bloc>()
+                      .add(FINALMASTERmsg_METHODE_EDIT());
                 },
                 child: Container(
                   height: 40,

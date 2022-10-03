@@ -13,6 +13,8 @@ import '../FINALMASTERvar.dart';
 
 //context.read<FINALMASTER_Bloc>().add(FINALMASTER_UNITget());
 
+late BuildContext UNITStablecontext;
+
 class UNITStable extends StatelessWidget {
   UNITStable({
     super.key,
@@ -22,6 +24,7 @@ class UNITStable extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    UNITStablecontext = context;
     List<dataset> _data = data ?? [];
     if (FINALMASTERvar.UNIT_SORT_ST == 0) {
     } else if (FINALMASTERvar.UNIT_SORT_ST == 1) {
@@ -109,7 +112,7 @@ class UNITStable extends StatelessWidget {
                   i.isEven ? Colors.grey.shade50 : Colors.grey.shade200,
               TYPEtext: _data[i].f11,
               UNITtext: _data[i].f02,
-              DESIMALtext: "",
+              DESIMALtext: _data[i].f03,
               ACTIONtext: "ACTION",
               isACTION: true,
               DeleteFN: (v) {
@@ -256,9 +259,8 @@ class _UNITACTIONState extends State<UNITACTION> {
             ),
             InkWell(
               onTap: () {
-                // context
-                //     .read<FINALMASTERmsg_Bloc>()
-                //     .add(FINALMASTERmsg_UNIT_EDIT());
+                UNITStablecontext.read<FINALMASTERmsg_Bloc>()
+                    .add(FINALMASTERmsg_UNIT_EDIT());
               },
               child: Container(
                 height: 40,
