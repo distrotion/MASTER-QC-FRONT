@@ -23,6 +23,7 @@ class FINALMASTERvar {
   static List<MapEntry<String, String>> RESULTFORMATBUFF = [];
   static List<MapEntry<String, String>> GRAPHTYPEBUFF = [];
   static List<MapEntry<String, String>> INSTRUMENTSBUFF = [];
+  static List<MapEntry<String, String>> CALCULATEBUFF = [];
 //
   static bool masterID_ACTION_isEnabled = false;
   //--------TYPE
@@ -49,6 +50,7 @@ class FINALMASTERvar {
   static String GRAPHTYPE_ITEMS_ACTION = '';
   static String GRAPHINTERSECTION_ITEMS_ACTION = '';
   static String DOCUMENTS_ITEMS_ACTION = '';
+  static String CALCULATE_ITEMS_ACTION = '';
   static String masterID_ITEMS_ACTION = '';
 
   static int ITEMS_SORT_F = 0;

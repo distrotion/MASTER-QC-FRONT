@@ -71,7 +71,9 @@ class _FINALMASTERmainState extends State<FINALMASTERmain> {
     FINALMASTERvar.RESULTFORMATBUFF = widget.DD!.RESULTFORMAT;
     FINALMASTERvar.GRAPHTYPEBUFF = widget.DD!.GRAPHTYPE;
     FINALMASTERvar.INSTRUMENTSBUFF = widget.DD!.INSTRUMENTS;
+    FINALMASTERvar.CALCULATEBUFF = widget.DD!.CALCULATE;
 
+//CALCULATE
     return Column(
       children: [
         Expanded(

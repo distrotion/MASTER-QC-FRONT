@@ -20,6 +20,7 @@ class FINALMASTERdropdown_Bloc
           RESULTFORMAT: [],
           GRAPHTYPE: [],
           INSTRUMENTS: [],
+          CALCULATE: [],
         )) {
     on<FINALMASTERdropdown_MASTER>((event, emit) {
       return _FINALMASTERdropdown_MASTER(
@@ -30,6 +31,7 @@ class FINALMASTERdropdown_Bloc
             RESULTFORMAT: [],
             GRAPHTYPE: [],
             INSTRUMENTS: [],
+            CALCULATE: [],
           ),
           emit);
     });
@@ -43,6 +45,7 @@ class FINALMASTERdropdown_Bloc
       RESULTFORMAT: [const MapEntry("", "")],
       GRAPHTYPE: [const MapEntry("", "")],
       INSTRUMENTS: [const MapEntry("", "")],
+      CALCULATE: [const MapEntry("", "")],
     );
     //------------------------------------------------------------------------
     final response = await Dio().post(
@@ -94,6 +97,13 @@ class FINALMASTERdropdown_Bloc
               databuff['INSTRUMENTS'][i]['INSTRUMENTS'].toString()));
         }
       }
+      if (databuff['CALCULATE'] != null) {
+        for (int i = 0; i < databuff['CALCULATE'].length; i++) {
+          output.CALCULATE.add(MapEntry(
+              databuff['CALCULATE'][i]['CALCULATE'].toString(),
+              databuff['CALCULATE'][i]['masterID'].toString()));
+        }
+      }
     } else {
       //
     }
@@ -109,6 +119,7 @@ class DROPDOWNset {
     required this.RESULTFORMAT,
     required this.GRAPHTYPE,
     required this.INSTRUMENTS,
+    required this.CALCULATE,
   });
   List<MapEntry<String, String>> TYPEdd = [];
   List<MapEntry<String, String>> ITEMSdd = [];
@@ -116,6 +127,7 @@ class DROPDOWNset {
   List<MapEntry<String, String>> RESULTFORMAT = [];
   List<MapEntry<String, String>> GRAPHTYPE = [];
   List<MapEntry<String, String>> INSTRUMENTS = [];
+  List<MapEntry<String, String>> CALCULATE = [];
 }
 
 //GRAPHTYPE

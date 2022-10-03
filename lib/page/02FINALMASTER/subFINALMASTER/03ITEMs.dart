@@ -56,6 +56,7 @@ class ITEMStable extends StatelessWidget {
               FINALMASTERvar.GRAPHTYPE_ITEMS_ACTION = '';
               FINALMASTERvar.GRAPHINTERSECTION_ITEMS_ACTION = '';
               FINALMASTERvar.DOCUMENTS_ITEMS_ACTION = '';
+              FINALMASTERvar.CALCULATE_ITEMS_ACTION = '';
               FINALMASTERvar.masterID_ITEMS_ACTION = '';
               ITEMSPOPUP(context);
             },
@@ -140,7 +141,7 @@ class ITEMStable extends StatelessWidget {
               GRAPHTYPEtext: _data[i].f04,
               GRAPHINTERSECTIONtext: _data[i].f05,
               DOCUMENTStext: _data[i].f06,
-              CALtext: "",
+              CALtext: _data[i].f17,
               ACTIONtext: "ACTION",
               isACTION: true,
               DeleteFN: (v) {
@@ -161,6 +162,7 @@ class ITEMStable extends StatelessWidget {
                 FINALMASTERvar.GRAPHTYPE_ITEMS_ACTION = _data[i].f04;
                 FINALMASTERvar.GRAPHINTERSECTION_ITEMS_ACTION = _data[i].f05;
                 FINALMASTERvar.DOCUMENTS_ITEMS_ACTION = _data[i].f06;
+                FINALMASTERvar.CALCULATE_ITEMS_ACTION = _data[i].f07;
                 FINALMASTERvar.masterID_ITEMS_ACTION = _data[i].f21;
                 ITEMSPOPUP(context);
               },
@@ -292,6 +294,23 @@ class _ITEMSACTIONState extends State<ITEMSACTION> {
               returnfunc: (String s) {
                 FINALMASTERvar.GRAPHINTERSECTION_ITEMS_ACTION = s;
               },
+            ),
+            SizedBox(
+              height: 64,
+              width: 400,
+              child: AdvanceDropDown(
+                sLabel: "CALCULATE",
+                imgpath: 'assets/icons/icon-down_4@3x.png',
+                listdropdown: FINALMASTERvar.CALCULATEBUFF,
+                onChangeinside: (d, k) {
+                  setState(() {
+                    FINALMASTERvar.CALCULATE_ITEMS_ACTION = d;
+                  });
+                },
+                value: FINALMASTERvar.CALCULATE_ITEMS_ACTION,
+                height: 40,
+                width: 400,
+              ),
             ),
             // ComInputText(
             //   sLabel: "DOCUMENTS",

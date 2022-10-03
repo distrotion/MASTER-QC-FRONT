@@ -191,8 +191,14 @@ class FINALMASTER_Bloc extends Bloc<FINALMASTER_Event, DatasetWithSatatus> {
             f06: databuff[i]['DOCUMENTS'] != null
                 ? databuff[i]['DOCUMENTS'].toString()
                 : "",
+            f07: databuff[i]['CALCULATE'] != null
+                ? databuff[i]['CALCULATE'].toString()
+                : "",
             f11: databuff[i]['TYPEname'] != null
                 ? databuff[i]['TYPEname'].toString()
+                : "",
+            f17: databuff[i]['CALCULATEname'] != null
+                ? databuff[i]['CALCULATEname'].toString()
                 : "",
             f21: databuff[i]['masterID'] != null
                 ? databuff[i]['masterID'].toString()
