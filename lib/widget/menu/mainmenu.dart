@@ -74,30 +74,30 @@ class Data_Menu_mainmenu extends StatelessWidget {
                     ),
                   ),
                 ))),
+        // menu_normal(
+        //   name: "Page1",
+        //   page: Page1(),
+        //   Lv: 1,
+        // ),
         menu_normal(
-          name: "Page1",
-          page: Page1(),
-          Lv: 1,
-        ),
-        menu_normal(
-          name: "Page2",
+          name: "MASTER FINAL",
           page: Page2(),
           Lv: 1,
         ),
+        // menu_normal(
+        //   name: "Page3",
+        //   page: Page3(),
+        //   Lv: 1,
+        // ),
+        // menu_normal(
+        //   name: "MATCP",
+        //   page: Page4(),
+        //   Lv: 1,
+        // ),
         menu_normal(
-          name: "Page3",
-          page: Page3(),
-          Lv: 1,
-        ),
-        menu_normal(
-          name: "Page4",
-          page: Page4(),
-          Lv: 1,
-        ),
-        menu_normal(
-          name: "Page5",
+          name: "INSPECTION STD",
           page: Page5(),
-          Lv: 5,
+          Lv: 1,
         ),
         menu_logout(
           name: "Logout",

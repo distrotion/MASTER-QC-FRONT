@@ -197,6 +197,7 @@ class _SPECIALSPECACTIONState extends State<SPECIALSPECACTION> {
             ),
           ),
           ComInputText(
+            nLimitedChar: 100,
             sLabel: "SPECIALSPEC",
             height: 40,
             width: 400,
@@ -212,6 +213,7 @@ class _SPECIALSPECACTIONState extends State<SPECIALSPECACTION> {
             },
           ),
           ComInputText(
+            nLimitedChar: 100,
             sLabel: "masterID",
             height: 40,
             width: 400,

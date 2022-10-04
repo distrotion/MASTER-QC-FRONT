@@ -235,6 +235,7 @@ class _METHODACTIONState extends State<METHODACTION> {
                 ),
               ),
               ComInputText(
+                nLimitedChar: 100,
                 sLabel: "DOCUMENT",
                 height: 40,
                 width: 400,
@@ -250,6 +251,7 @@ class _METHODACTIONState extends State<METHODACTION> {
                 },
               ),
               ComInputText(
+                nLimitedChar: 100,
                 sLabel: "masterID",
                 height: 40,
                 width: 400,

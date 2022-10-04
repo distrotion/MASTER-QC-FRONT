@@ -186,6 +186,7 @@ class _CALCULATEACTIONState extends State<CALCULATEACTION> {
                 ),
               ),
               ComInputText(
+                nLimitedChar: 100,
                 sLabel: "CAL NAME",
                 height: 40,
                 width: 400,
@@ -229,6 +230,7 @@ class _CALCULATEACTIONState extends State<CALCULATEACTION> {
                           ),
                         ),
                         ComInputText(
+                          nLimitedChar: 100,
                           sLabel: "X NAME",
                           height: 40,
                           width: 300,
@@ -266,6 +268,7 @@ class _CALCULATEACTIONState extends State<CALCULATEACTION> {
                           ),
                         ),
                         ComInputText(
+                          nLimitedChar: 100,
                           sLabel: "Y NAME",
                           height: 40,
                           width: 300,
@@ -303,6 +306,7 @@ class _CALCULATEACTIONState extends State<CALCULATEACTION> {
                           ),
                         ),
                         ComInputText(
+                          nLimitedChar: 100,
                           sLabel: "Z NAME",
                           height: 40,
                           width: 300,
@@ -340,6 +344,7 @@ class _CALCULATEACTIONState extends State<CALCULATEACTION> {
                           ),
                         ),
                         ComInputText(
+                          nLimitedChar: 100,
                           sLabel: "I NAME",
                           height: 40,
                           width: 300,
@@ -377,6 +382,7 @@ class _CALCULATEACTIONState extends State<CALCULATEACTION> {
                           ),
                         ),
                         ComInputText(
+                          nLimitedChar: 100,
                           sLabel: "K1 NAME",
                           height: 40,
                           width: 300,
@@ -414,6 +420,7 @@ class _CALCULATEACTIONState extends State<CALCULATEACTION> {
                           ),
                         ),
                         ComInputText(
+                          nLimitedChar: 100,
                           sLabel: "K2 NAME",
                           height: 40,
                           width: 300,
@@ -451,6 +458,7 @@ class _CALCULATEACTIONState extends State<CALCULATEACTION> {
                           ),
                         ),
                         ComInputText(
+                          nLimitedChar: 100,
                           sLabel: "K3 NAME",
                           height: 40,
                           width: 300,
@@ -474,6 +482,7 @@ class _CALCULATEACTIONState extends State<CALCULATEACTION> {
                 ),
               ),
               ComInputText(
+                nLimitedChar: 100,
                 sLabel: "FORMULA",
                 height: 40,
                 width: 400,
@@ -489,6 +498,7 @@ class _CALCULATEACTIONState extends State<CALCULATEACTION> {
                 },
               ),
               ComInputText(
+                nLimitedChar: 100,
                 sLabel: "masterID",
                 height: 40,
                 width: 400,

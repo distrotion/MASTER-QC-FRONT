@@ -232,6 +232,7 @@ class _ITEMSACTIONState extends State<ITEMSACTION> {
               ),
             ),
             ComInputText(
+              nLimitedChar: 100,
               sLabel: "ITEMS",
               height: 40,
               width: 400,
@@ -281,6 +282,7 @@ class _ITEMSACTIONState extends State<ITEMSACTION> {
               ),
             ),
             ComInputText(
+              nLimitedChar: 100,
               sLabel: "GRAPH INTERSECTION",
               height: 40,
               width: 400,
@@ -312,7 +314,7 @@ class _ITEMSACTIONState extends State<ITEMSACTION> {
                 width: 400,
               ),
             ),
-            // ComInputText(
+            // ComInputText(nLimitedChar: 100,
             //   sLabel: "DOCUMENTS",
             //   height: 40,
             //   width: 400,
@@ -328,6 +330,7 @@ class _ITEMSACTIONState extends State<ITEMSACTION> {
             //   },
             // ),
             ComInputText(
+              nLimitedChar: 100,
               sLabel: "masterID",
               height: 40,
               width: 400,

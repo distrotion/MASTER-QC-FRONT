@@ -191,6 +191,7 @@ class _MACHINENAMEACTIONState extends State<MACHINENAMEACTION> {
                 ),
               ),
               ComInputText(
+                nLimitedChar: 100,
                 sLabel: "METHOD",
                 height: 40,
                 width: 400,
@@ -283,6 +284,7 @@ class _MACHINENAMEACTIONState extends State<MACHINENAMEACTION> {
                 ),
               ),
               ComInputText(
+                nLimitedChar: 100,
                 sLabel: "masterID",
                 height: 40,
                 width: 400,

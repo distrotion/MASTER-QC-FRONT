@@ -199,6 +199,7 @@ class _UNITACTIONState extends State<UNITACTION> {
               ),
             ),
             ComInputText(
+              nLimitedChar: 100,
               sLabel: "UNIT",
               height: 40,
               width: 400,
@@ -239,6 +240,7 @@ class _UNITACTIONState extends State<UNITACTION> {
               ),
             ),
             ComInputText(
+              nLimitedChar: 100,
               sLabel: "masterID",
               height: 40,
               width: 400,

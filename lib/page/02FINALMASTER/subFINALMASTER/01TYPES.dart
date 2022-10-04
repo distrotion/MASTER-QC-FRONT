@@ -158,6 +158,7 @@ class _TYPEACTIONState extends State<TYPEACTION> {
             ),
           ),
           ComInputText(
+            nLimitedChar: 100,
             sLabel: "TYPE",
             height: 40,
             width: 400,
@@ -173,6 +174,7 @@ class _TYPEACTIONState extends State<TYPEACTION> {
             },
           ),
           ComInputText(
+            nLimitedChar: 100,
             sLabel: "masterID",
             height: 40,
             width: 400,

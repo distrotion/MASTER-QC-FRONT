@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '05INSPECTIONstd/INSPECTIONstdMAIN.dart';
+
 class Page5 extends StatelessWidget {
   const Page5({Key? key}) : super(key: key);
 
@@ -15,12 +17,7 @@ class Page5Body extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Center(
-      child: Container(
-        height: 100,
-        width: 100,
-        color: Colors.deepOrange,
-        child: const Text("PAGE 5"),
-      ),
+      child: INSPECTIONstdMAIN(),
     );
   }
 }
