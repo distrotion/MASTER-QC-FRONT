@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../bloc/BlocEvent/ChangePageEvent.dart';
 import '../../data/global.dart';
 import '../../mainBody.dart';
+import '../responsive/responsive.dart';
 
 class menu_normal extends StatelessWidget {
   menu_normal(
@@ -23,7 +24,11 @@ class menu_normal extends StatelessWidget {
         // BlocProvider.of<SwPageCubit>(context).togglePage(page);
         CuPage = page;
         CuPageLV = Lv;
-        MainBodyContext.read<ChangePage_Bloc>().add(ChangePage());
+        if (Responsive.isDesktop(context)) {
+          MainBodyContext.read<ChangePage_Bloc>().add(ChangePage_nodrower());
+        } else {
+          MainBodyContext.read<ChangePage_Bloc>().add(ChangePage());
+        }
       },
       child: Container(
         //color: Colors.blue,

@@ -10,9 +10,19 @@ class INSPECTIONstdVAR {
   static String MATERIAL = "";
   static String CUST_FULLNM = "";
   //----------------------------
+  static List<MapEntry<String, String>> List_FINAL_ITEMs = [];
+  static List<MapEntry<String, String>> List_FINAL_SCMARK = YESNO;
+  static List<MapEntry<String, String>> List_FINAL_METHOD = [];
+  static List<MapEntry<String, String>> List_FINAL_LOAD = [];
+  static List<MapEntry<String, String>> List_FINAL_GT = [];
+  static List<MapEntry<String, String>> List_FINAL_UNIT = [];
+  static List<MapEntry<String, String>> List_FINAL_FREQUENCY = [];
+  static List<MapEntry<String, String>> List_FINAL_IMGreaddata = YESNO;
+  static List<MapEntry<String, String>> List_FINAL_IMGno = NUM14;
+  //
   static String FINAL_seq = "";
   static String FINAL_ITEMs = "";
-  static String FINAL_CORStype = "";
+  static String FINAL_COREtype = "";
   static String FINAL_FORMULA = "";
   static String FINAL_SCMARK = "";
   static String FINAL_SCMARKtype = "";
@@ -48,3 +58,25 @@ class veOB {
   String LOL_H;
   String TARGET;
 }
+
+const List<MapEntry<String, String>> NUM14 = [
+  MapEntry("", ""),
+  MapEntry("1", "1"),
+  MapEntry("2", "2"),
+  MapEntry("3", "3"),
+  MapEntry("4", "4"),
+];
+
+const List<MapEntry<String, String>> YESNO = [
+  MapEntry("", ""),
+  MapEntry("YES", "YES"),
+  MapEntry("NO", "NO"),
+];
+
+const List<MapEntry<String, String>> specset = [
+  MapEntry("", ""),
+  MapEntry("BTW", "BTW"),
+  MapEntry("LOL(<)", "LOL(<)"),
+  MapEntry("HIM(>)", "HIM(>)"),
+  MapEntry("Actual", "Actual"),
+];

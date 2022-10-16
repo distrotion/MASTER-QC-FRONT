@@ -10,6 +10,7 @@ import 'page/loginpage.dart';
 import 'widget/appbar/AppBar.dart';
 import 'widget/menu/mainmenu.dart';
 import 'widget/notification/noti01.dart';
+import 'widget/responsive/responsive.dart';
 
 //-------------------------------------
 
@@ -18,6 +19,7 @@ late BuildContext LoginContext;
 
 class MainBlocRebuild extends StatelessWidget {
   const MainBlocRebuild({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<BlocPageRebuild, bool>(builder: (_, e) {
@@ -99,13 +101,26 @@ class MainBody extends StatelessWidget {
     MainBodyContext = context;
 
     return Scaffold(
-        appBar: AppBar(
-          shadowColor: Colors.transparent,
-          backgroundColor: const Color(0xFF0b1327),
-          actions: <Widget>[App_Bar()],
-        ),
-        drawer: MainMenu(),
-        body: page);
+      appBar: AppBar(
+        shadowColor: Colors.transparent,
+        backgroundColor: const Color(0xFF0b1327),
+        actions: <Widget>[App_Bar()],
+      ),
+      drawer: MainMenu(),
+      body: Row(
+        children: [
+          if (Responsive.isDesktop(context))
+            Expanded(
+              flex: 1,
+              child: MainMenu(),
+            ),
+          Expanded(
+            flex: 5,
+            child: page,
+          ),
+        ],
+      ),
+    );
   }
 }
 

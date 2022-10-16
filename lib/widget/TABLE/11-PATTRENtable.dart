@@ -19,10 +19,12 @@ class PATTERNtable extends StatelessWidget {
     this.GT,
     this.SPECIFICATIONve,
     this.UNIT,
+    this.CONVERSE,
     this.POSITION,
     this.PCS,
     this.FREQUENCY,
     this.REMARK,
+    this.SWreport,
     this.ACTION,
     this.isACTION,
     this.EditFN,
@@ -43,10 +45,12 @@ class PATTERNtable extends StatelessWidget {
   String? GT;
   String? SPECIFICATIONve;
   String? UNIT;
+  String? CONVERSE;
   String? POSITION;
   String? PCS;
   String? FREQUENCY;
   String? REMARK;
+  String? SWreport;
   String? ACTION;
   bool? isACTION;
   Function(String)? EditFN;
@@ -187,6 +191,15 @@ class PATTERNtable extends StatelessWidget {
                   ),
                 ),
               ],
+              if (CONVERSE != null) ...[
+                Expanded(
+                  flex: 1,
+                  child: EACHCELL(
+                    data: CONVERSE ?? "",
+                    tapCell: (v) {},
+                  ),
+                ),
+              ],
               if (POSITION != null) ...[
                 Expanded(
                   flex: 1,
@@ -219,6 +232,15 @@ class PATTERNtable extends StatelessWidget {
                   flex: 1,
                   child: EACHCELL(
                     data: REMARK ?? "",
+                    tapCell: (v) {},
+                  ),
+                ),
+              ],
+              if (SWreport != null) ...[
+                Expanded(
+                  flex: 1,
+                  child: EACHCELL(
+                    data: SWreport ?? "",
                     tapCell: (v) {},
                   ),
                 ),

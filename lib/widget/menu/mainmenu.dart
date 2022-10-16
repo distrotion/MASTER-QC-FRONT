@@ -55,25 +55,25 @@ class Data_Menu_mainmenu extends StatelessWidget {
         const SizedBox(
           height: 20,
         ),
-        Align(
-            alignment: Alignment.center,
-            child: Container(
-                height: 40,
-                width: 180,
-                color: Colors.white,
-                child: Padding(
-                  padding: const EdgeInsetsDirectional.all(1),
-                  child: Container(
-                    height: 35,
-                    decoration: const BoxDecoration(
-                      color: Colors.white,
-                      image: DecorationImage(
-                        image: AssetImage("assets/images/logo_tpk.png"),
-                        fit: BoxFit.fitHeight,
-                      ),
-                    ),
-                  ),
-                ))),
+        // Align(
+        //     alignment: Alignment.center,
+        //     child: Container(
+        //         height: 40,
+        //         width: 180,
+        //         color: Colors.white,
+        //         child: Padding(
+        //           padding: const EdgeInsetsDirectional.all(1),
+        //           child: Container(
+        //             height: 35,
+        //             decoration: const BoxDecoration(
+        //               color: Colors.white,
+        //               image: DecorationImage(
+        //                 image: AssetImage("assets/images/logo_tpk.png"),
+        //                 fit: BoxFit.fitHeight,
+        //               ),
+        //             ),
+        //           ),
+        //         ))),
         // menu_normal(
         //   name: "Page1",
         //   page: Page1(),
