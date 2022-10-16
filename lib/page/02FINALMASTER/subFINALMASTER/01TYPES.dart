@@ -66,6 +66,23 @@ class TYPEStable extends StatelessWidget {
         SizedBox(
           height: 40,
           child: TYPEtableWidget(
+            //---------------------------------  muti check
+            FUCHECK: (v) {
+              if (v == 'true') {
+                FINALMASTERvar.ischeck_TYPE = true;
+                for (int i = 0; i < _data.length; i++) {
+                  _data[i].f100 = 'true';
+                }
+              } else {
+                FINALMASTERvar.ischeck_TYPE = false;
+                for (int i = 0; i < _data.length; i++) {
+                  _data[i].f100 = 'false';
+                }
+              }
+              context.read<BlocPageRebuild>().rebuildPage();
+            },
+            //---------------------------------  muti check
+            isCHECK: FINALMASTERvar.ischeck_TYPE,
             BGColorMain: Colors.grey.shade400,
             TYPEtext: "TYPE",
             ACTIONtext: "ACTION",
@@ -89,6 +106,17 @@ class TYPEStable extends StatelessWidget {
           SizedBox(
             height: 40,
             child: TYPEtableWidget(
+              //----------------------------------  single check
+              FUCHECK: (v) {
+                if (v == 'true') {
+                  _data[i].f100 = 'true';
+                } else {
+                  _data[i].f100 = 'false';
+                }
+                context.read<BlocPageRebuild>().rebuildPage();
+              },
+              isCHECK: _data[i].f100 != '' && _data[i].f100 != 'false',
+              //----------------------------------  single check
               BGColorMain:
                   i.isEven ? Colors.grey.shade50 : Colors.grey.shade200,
               TYPEtext: _data[i].f01,

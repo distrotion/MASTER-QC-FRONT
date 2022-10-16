@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../common/CheckboxC.dart';
 import '00EACHCALL.dart';
 
 class TYPEtableWidget extends StatelessWidget {
@@ -13,16 +14,20 @@ class TYPEtableWidget extends StatelessWidget {
     this.EditFN,
     this.DeleteFN,
     this.F01,
+    this.FUCHECK,
+    this.isCHECK,
   });
   Color? BGColorMain;
   String? TYPEtext;
   String? ACTIONtext;
   bool? isACTION;
+  bool? isCHECK;
   String? masterIDtext;
   Function(String)? EditFN;
   Function(String)? DeleteFN;
 
   Function(String)? F01;
+  Function(String)? FUCHECK;
 
   @override
   Widget build(BuildContext context) {
@@ -33,6 +38,25 @@ class TYPEtableWidget extends StatelessWidget {
         children: [
           Row(
             children: [
+              // //------------------------------  OOP side
+
+              // Expanded(
+              //   flex: 1,
+              //   child: SizedBox(
+              //     height: 24,
+              //     width: 24,
+              //     child: CheckBoxC(
+              //       value: isCHECK ?? false,
+              //       getChbox: (value) {
+              //         if (FUCHECK != null) {
+              //           FUCHECK!(value.toString());
+              //         }
+              //       },
+              //     ),
+              //   ),
+              // ),
+
+              // //------------------------------
               Expanded(
                 flex: 1,
                 child: EACHCELL(

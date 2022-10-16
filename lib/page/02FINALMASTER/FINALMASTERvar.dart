@@ -34,6 +34,8 @@ class FINALMASTERvar {
   static int TYPE_SORT_F = 0;
   static int TYPE_SORT_ST = 0;
 
+  static bool ischeck_TYPE = false;
+
   //--------UNIT
   static String TYPEid_UNIT_ACTION = '';
   static String UNIT_UNIT_ACTION = '';
