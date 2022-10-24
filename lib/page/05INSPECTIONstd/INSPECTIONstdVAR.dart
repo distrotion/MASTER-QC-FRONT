@@ -18,8 +18,12 @@ class INSPECTIONstdVAR {
   static List<MapEntry<String, String>> List_FINAL_UNIT = [];
   static List<MapEntry<String, String>> List_FINAL_FREQUENCY = [];
   static List<MapEntry<String, String>> List_FINAL_IMGreaddata = YESNO;
+  static List<MapEntry<String, String>> List_FINAL_SWreport = YESNO;
   static List<MapEntry<String, String>> List_FINAL_IMGno = NUM14;
-  //
+  static List<MapEntry<String, String>> List_FINAL_CORETYPE = [];
+  static List<MapEntry<String, String>> List_FINAL_CALCULATE = [];
+  //------------------------------------------------------------------------------------
+
   static String FINAL_seq = "";
   static String FINAL_ITEMs = "";
   static String FINAL_COREtype = "";
@@ -36,10 +40,31 @@ class INSPECTIONstdVAR {
   static String FINAL_SPECIFICATIONve = "";
   static veOB FINAL_SPECIFICATIONveOB = veOB();
   static String FINAL_UNIT = "";
+  static String FINAL_UNIT_CONVERST = "";
   static String FINAL_POINTPCS = "";
   static String FINAL_PCS = "";
   static String FINAL_FREQUENCY = "";
   static String FINAL_REMARK = "";
+  static String FINAL_RESULTFORMATdata = "";
+  static String FINAL_SWreport = "";
+
+  static String FINAL_CALCULATE = "";
+  static String FINAL_CAL_K1 = "";
+  static String FINAL_CAL_K2 = "";
+  static String FINAL_CAL_K3 = "";
+
+  static String FINAL_CAL_K1_N = "";
+  static String FINAL_CAL_K2_N = "";
+  static String FINAL_CAL_K3_N = "";
+  static bool FINAL_CAL_K1b = false;
+  static bool FINAL_CAL_K2b = false;
+  static bool FINAL_CAL_K3b = false;
+
+  static bool FINAL_POP = false;
+
+  static String CALCULATEp = "";
+
+  //------------------------------------------------------------------------------------
 }
 
 class veOB {

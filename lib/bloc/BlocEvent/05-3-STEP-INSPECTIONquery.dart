@@ -13,7 +13,9 @@ class INSPECTION_GET_STEP1 extends INSPECTION_Event {}
 
 class INSPECTION_GET_STEP2 extends INSPECTION_Event {}
 
-class INSPECTION_GET_STEP3 extends INSPECTION_Event {}
+class INSPECTION_GET_DOCUMENT extends INSPECTION_Event {}
+
+class INSPECTION_GET_CALCULATE extends INSPECTION_Event {}
 
 class INSPECTION_FLUSH extends INSPECTION_Event {}
 
@@ -33,6 +35,7 @@ class INSPECTION_DDSTEP_Bloc
           GTdd: [],
           UNITdd: [],
           FREQUENCYdd: [],
+          CALCULATEdd: [],
           //
           METHODdd: [],
           SPECIFICATIONdd: [],
@@ -52,6 +55,7 @@ class INSPECTION_DDSTEP_Bloc
             GTdd: [],
             UNITdd: [],
             FREQUENCYdd: [],
+            CALCULATEdd: [],
             //
             METHODdd: [],
             SPECIFICATIONdd: [],
@@ -73,6 +77,7 @@ class INSPECTION_DDSTEP_Bloc
             GTdd: [],
             UNITdd: [],
             FREQUENCYdd: [],
+            CALCULATEdd: [],
             //
             METHODdd: [],
             SPECIFICATIONdd: [],
@@ -80,8 +85,8 @@ class INSPECTION_DDSTEP_Bloc
           emit);
     });
 
-    on<INSPECTION_GET_STEP3>((event, emit) {
-      return _INSPECTION_GET_STEP3(
+    on<INSPECTION_GET_DOCUMENT>((event, emit) {
+      return _INSPECTION_GET_DOCUMENT(
           DROPDOWN_INS_STEP1(
             //
             ITEMSdd: [],
@@ -95,6 +100,30 @@ class INSPECTION_DDSTEP_Bloc
             GTdd: [],
             UNITdd: [],
             FREQUENCYdd: [],
+            CALCULATEdd: [],
+            //
+            METHODdd: [],
+            SPECIFICATIONdd: [],
+          ),
+          emit);
+    });
+    //_INSPECTION_GET_CALCULATE
+    on<INSPECTION_GET_CALCULATE>((event, emit) {
+      return _INSPECTION_GET_CALCULATE(
+          DROPDOWN_INS_STEP1(
+            //
+            ITEMSdd: [],
+            //
+            COREdd: [],
+            SCMASKdd: [],
+            SCMASKTYPEdd: [],
+            IMGreadDATAdd: [],
+            IMGreadNOdd: [],
+            LOADdd: [],
+            GTdd: [],
+            UNITdd: [],
+            FREQUENCYdd: [],
+            CALCULATEdd: [],
             //
             METHODdd: [],
             SPECIFICATIONdd: [],
@@ -117,6 +146,7 @@ class INSPECTION_DDSTEP_Bloc
             GTdd: [],
             UNITdd: [],
             FREQUENCYdd: [],
+            CALCULATEdd: [],
             //
             METHODdd: [],
             SPECIFICATIONdd: [],
@@ -140,6 +170,7 @@ class INSPECTION_DDSTEP_Bloc
       GTdd: [],
       UNITdd: [],
       FREQUENCYdd: [],
+      CALCULATEdd: [],
       //
       METHODdd: [],
       SPECIFICATIONdd: [],
@@ -175,15 +206,16 @@ class INSPECTION_DDSTEP_Bloc
       //
       ITEMSdd: [],
       //
-      COREdd: [],
+      COREdd: [MapEntry("", "")],
       SCMASKdd: [],
       SCMASKTYPEdd: [],
       IMGreadDATAdd: [],
       IMGreadNOdd: [],
       LOADdd: [],
-      GTdd: [],
+      GTdd: [MapEntry("", "")],
       UNITdd: [],
       FREQUENCYdd: [],
+      CALCULATEdd: [MapEntry("", "")],
       //
       METHODdd: [MapEntry("", "")],
       SPECIFICATIONdd: [],
@@ -200,6 +232,10 @@ class INSPECTION_DDSTEP_Bloc
       // print(databuff);
 
       output.status = 'STEP2';
+
+      output.RESULTFORMATdata = databuff['RESULTFORMATdata'] != null
+          ? databuff['RESULTFORMATdata'].toString()
+          : "";
 
       if (databuff['METHOD'] != null) {
         for (int i = 0; i < databuff['METHOD'].length; i++) {
@@ -235,14 +271,31 @@ class INSPECTION_DDSTEP_Bloc
               databuff['FREQUENCY'][i]['FREQUENCY'].toString()));
         }
       }
+
+      if (databuff['CORETYPE'] != null) {
+        for (int i = 0; i < databuff['CORETYPE'].length; i++) {
+          output.COREdd.add(MapEntry(
+              databuff['CORETYPE'][i]['CORETYPE'].toString(),
+              databuff['CORETYPE'][i]['CORETYPE'].toString()));
+        }
+      }
+
+      if (databuff['CALCULATE'] != null) {
+        for (int i = 0; i < databuff['CALCULATE'].length; i++) {
+          output.CALCULATEdd.add(MapEntry(
+              databuff['CALCULATE'][i]['CALCULATE'].toString(),
+              databuff['CALCULATE'][i]['masterID'].toString()));
+        }
+      }
       //
     } else {
       //
     }
+
     emit(output);
   }
 
-  Future<void> _INSPECTION_GET_STEP3(
+  Future<void> _INSPECTION_GET_DOCUMENT(
       DROPDOWN_INS_STEP1 toAdd, Emitter<DROPDOWN_INS_STEP1> emit) async {
     DROPDOWN_INS_STEP1 output = DROPDOWN_INS_STEP1(
       //
@@ -257,10 +310,74 @@ class INSPECTION_DDSTEP_Bloc
       GTdd: [],
       UNITdd: [],
       FREQUENCYdd: [],
+      CALCULATEdd: [],
       //
       METHODdd: [],
       SPECIFICATIONdd: [],
     );
+    final response = await Dio().post(
+      server + "GET_DOCUMENT",
+      data: {
+        "METHODid": INSPECTIONstdVAR.FINAL_METHOD,
+      },
+    );
+    if (response.statusCode == 200) {
+      var databuff = response.data;
+      print(databuff);
+
+      output.status = 'GET_DOCUMENT';
+      output.DOCUMENT =
+          databuff['DOCUMENT'] != null ? databuff['DOCUMENT'].toString() : "";
+    }
+    emit(output);
+  }
+
+  Future<void> _INSPECTION_GET_CALCULATE(
+      DROPDOWN_INS_STEP1 toAdd, Emitter<DROPDOWN_INS_STEP1> emit) async {
+    DROPDOWN_INS_STEP1 output = DROPDOWN_INS_STEP1(
+      //
+      ITEMSdd: [],
+      //
+      COREdd: [],
+      SCMASKdd: [],
+      SCMASKTYPEdd: [],
+      IMGreadDATAdd: [],
+      IMGreadNOdd: [],
+      LOADdd: [],
+      GTdd: [],
+      UNITdd: [],
+      FREQUENCYdd: [],
+      CALCULATEdd: [],
+      //
+      METHODdd: [],
+      SPECIFICATIONdd: [],
+    );
+    final response = await Dio().post(
+      server + "GET_CALCULATE",
+      data: {
+        "CALid": INSPECTIONstdVAR.FINAL_CALCULATE,
+      },
+    );
+    if (response.statusCode == 200) {
+      var databuff = response.data;
+      print(databuff);
+
+      output.status = 'GET_CALCULATE';
+      output.F_K1_N = databuff['K1'] != null ? databuff['K1'].toString() : "";
+      output.F_K2_N = databuff['K2'] != null ? databuff['K2'].toString() : "";
+      output.F_K3_N = databuff['K3'] != null ? databuff['K3'].toString() : "";
+
+      output.F_K1b_b =
+          databuff['K1b'] != null ? RboolFN(databuff['K1b'].toString()) : false;
+      output.F_K2b_b =
+          databuff['K2b'] != null ? RboolFN(databuff['K2b'].toString()) : false;
+      output.F_K3b_b =
+          databuff['K3b'] != null ? RboolFN(databuff['K3b'].toString()) : false;
+
+//RboolFN
+      // output.DOCUMENT =
+      //     databuff['DOCUMENT'] != null ? databuff['DOCUMENT'].toString() : "";
+    }
     emit(output);
   }
 
@@ -279,6 +396,7 @@ class INSPECTION_DDSTEP_Bloc
       GTdd: [],
       UNITdd: [],
       FREQUENCYdd: [],
+      CALCULATEdd: [],
       //
       METHODdd: [],
       SPECIFICATIONdd: [],
@@ -291,6 +409,8 @@ class INSPECTION_DDSTEP_Bloc
 class DROPDOWN_INS_STEP1 {
   DROPDOWN_INS_STEP1({
     this.status = '',
+    this.RESULTFORMATdata = '',
+    this.DOCUMENT = '',
     //lode step 1
     required this.ITEMSdd,
     //lode step 2
@@ -303,11 +423,21 @@ class DROPDOWN_INS_STEP1 {
     required this.GTdd,
     required this.UNITdd,
     required this.FREQUENCYdd,
+    required this.CALCULATEdd,
     //lode step 3
     required this.METHODdd,
     required this.SPECIFICATIONdd,
+    //
+    this.F_K1_N = '',
+    this.F_K2_N = '',
+    this.F_K3_N = '',
+    this.F_K1b_b = false,
+    this.F_K2b_b = false,
+    this.F_K3b_b = false,
   });
   String status;
+  String RESULTFORMATdata;
+  String DOCUMENT;
   //lode step 1
   List<MapEntry<String, String>> ITEMSdd;
 
@@ -322,8 +452,27 @@ class DROPDOWN_INS_STEP1 {
   List<MapEntry<String, String>> GTdd;
   List<MapEntry<String, String>> UNITdd;
   List<MapEntry<String, String>> FREQUENCYdd;
+  List<MapEntry<String, String>> CALCULATEdd;
 
   //lode step 3
 
   List<MapEntry<String, String>> SPECIFICATIONdd;
+
+  //
+  String F_K1_N;
+  String F_K2_N;
+  String F_K3_N;
+
+  bool F_K1b_b;
+  bool F_K2b_b;
+  bool F_K3b_b;
+}
+
+bool RboolFN(String input) {
+  bool output = false;
+
+  if (input == 'TRUE' || input == 'true') {
+    output = true;
+  }
+  return output;
 }

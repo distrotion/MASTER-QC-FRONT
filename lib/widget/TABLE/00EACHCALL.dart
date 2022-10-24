@@ -82,6 +82,34 @@ class ACTIONCELL extends StatelessWidget {
   }
 }
 
+class ACTIONCELLs extends StatelessWidget {
+  ACTIONCELLs({
+    super.key,
+    this.BGcolor,
+    required this.SaveFN,
+  });
+  Color? BGcolor;
+  Function(String)? SaveFN;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      color: BGcolor ?? Colors.transparent,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          InkWell(
+            onTap: () {
+              SaveFN!("SaveFN");
+            },
+            child: Icon(Icons.save),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
 class ACTIONCELLsingle extends StatelessWidget {
   ACTIONCELLsingle({
     super.key,

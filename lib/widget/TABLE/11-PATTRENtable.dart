@@ -18,6 +18,7 @@ class PATTERNtable extends StatelessWidget {
     this.LOAD,
     this.GT,
     this.SPECIFICATIONve,
+    this.CALCULATE,
     this.UNIT,
     this.CONVERSE,
     this.POSITION,
@@ -25,10 +26,57 @@ class PATTERNtable extends StatelessWidget {
     this.FREQUENCY,
     this.REMARK,
     this.SWreport,
+    //
+    this.Showseq,
+    this.ShowITEMs,
+    this.ShowCORStype,
+    this.ShowFORMULA,
+    this.ShowSCMARK,
+    this.ShowSCMARKtype,
+    this.ShowDOCUMENT,
+    this.ShowMETHOD,
+    this.ShowIMGreaddata,
+    this.ShowIMGno,
+    this.ShowLOAD,
+    this.ShowGT,
+    this.ShowSPECIFICATIONve,
+    this.ShowCALCULATE,
+    this.ShowUNIT,
+    this.ShowCONVERSE,
+    this.ShowPOSITION,
+    this.ShowPCS,
+    this.ShowFREQUENCY,
+    this.ShowREMARK,
+    this.ShowSWreport,
+    //
+    this.WIDGETseq,
+    this.WIDGETITEMs,
+    this.WIDGETCORStype,
+    this.WIDGETFORMULA,
+    this.WIDGETSCMARK,
+    this.WIDGETSCMARKtype,
+    this.WIDGETDOCUMENT,
+    this.WIDGETMETHOD,
+    this.WIDGETIMGreaddata,
+    this.WIDGETIMGno,
+    this.WIDGETLOAD,
+    this.WIDGETGT,
+    this.WIDGETSPECIFICATIONve,
+    this.WIDGETCALCULATE,
+    this.WIDGETUNIT,
+    this.WIDGETCONVERSE,
+    this.WIDGETPOSITION,
+    this.WIDGETPCS,
+    this.WIDGETFREQUENCY,
+    this.WIDGETREMARK,
+    this.WIDGETSWreport,
+    //
     this.ACTION,
+    this.ACTIONMODE,
     this.isACTION,
     this.EditFN,
     this.DeleteFN,
+    this.SAVEFN,
     this.BGColorMain,
   });
   String? seq;
@@ -44,6 +92,7 @@ class PATTERNtable extends StatelessWidget {
   String? LOAD;
   String? GT;
   String? SPECIFICATIONve;
+  String? CALCULATE;
   String? UNIT;
   String? CONVERSE;
   String? POSITION;
@@ -51,13 +100,61 @@ class PATTERNtable extends StatelessWidget {
   String? FREQUENCY;
   String? REMARK;
   String? SWreport;
+//
+  bool? Showseq;
+  bool? ShowITEMs;
+  bool? ShowCORStype;
+  bool? ShowFORMULA;
+  bool? ShowSCMARK;
+  bool? ShowSCMARKtype;
+  bool? ShowDOCUMENT;
+  bool? ShowMETHOD;
+  bool? ShowIMGreaddata;
+  bool? ShowIMGno;
+  bool? ShowLOAD;
+  bool? ShowGT;
+  bool? ShowSPECIFICATIONve;
+  bool? ShowCALCULATE;
+  bool? ShowUNIT;
+  bool? ShowCONVERSE;
+  bool? ShowPOSITION;
+  bool? ShowPCS;
+  bool? ShowFREQUENCY;
+  bool? ShowREMARK;
+  bool? ShowSWreport;
+//
+  Widget? WIDGETseq;
+  Widget? WIDGETITEMs;
+  Widget? WIDGETCORStype;
+  Widget? WIDGETFORMULA;
+  Widget? WIDGETSCMARK;
+  Widget? WIDGETSCMARKtype;
+  Widget? WIDGETDOCUMENT;
+  Widget? WIDGETMETHOD;
+  Widget? WIDGETIMGreaddata;
+  Widget? WIDGETIMGno;
+  Widget? WIDGETLOAD;
+  Widget? WIDGETGT;
+  Widget? WIDGETSPECIFICATIONve;
+  Widget? WIDGETCALCULATE;
+  Widget? WIDGETUNIT;
+  Widget? WIDGETCONVERSE;
+  Widget? WIDGETPOSITION;
+  Widget? WIDGETPCS;
+  Widget? WIDGETFREQUENCY;
+  Widget? WIDGETREMARK;
+  Widget? WIDGETSWreport;
+//
   String? ACTION;
+  int? ACTIONMODE;
   bool? isACTION;
   Function(String)? EditFN;
   Function(String)? DeleteFN;
+  Function(String)? SAVEFN;
   Color? BGColorMain;
   @override
   Widget build(BuildContext context) {
+    int _ACTIONMODE = ACTIONMODE ?? 0;
     return Container(
       color: BGColorMain ?? Colors.transparent,
       child: Column(
@@ -65,206 +162,275 @@ class PATTERNtable extends StatelessWidget {
         children: [
           Row(
             children: [
-              if (seq != null) ...[
+              if (Showseq ?? true) ...[
                 Expanded(
                   flex: 1,
-                  child: EACHCELL(
-                    data: seq ?? "",
-                    tapCell: (v) {},
-                  ),
+                  child: WIDGETseq == null
+                      ? EACHCELL(
+                          data: seq ?? "",
+                          tapCell: (v) {},
+                        )
+                      : WIDGETseq ?? SizedBox(),
                 ),
               ],
-              if (ITEMs != null) ...[
+              if (ShowITEMs ?? true) ...[
                 Expanded(
                   flex: 2,
-                  child: EACHCELL(
-                    data: ITEMs ?? "",
-                    tapCell: (v) {},
-                  ),
+                  child: WIDGETITEMs == null
+                      ? EACHCELL(
+                          data: ITEMs ?? "",
+                          tapCell: (v) {},
+                        )
+                      : WIDGETITEMs ?? SizedBox(),
                 ),
               ],
-              if (CORStype != null) ...[
+              if (ShowCORStype ?? true) ...[
                 Expanded(
                   flex: 2,
-                  child: EACHCELL(
-                    data: CORStype ?? "",
-                    tapCell: (v) {},
-                  ),
+                  child: WIDGETCORStype == null
+                      ? EACHCELL(
+                          data: CORStype ?? "",
+                          tapCell: (v) {},
+                        )
+                      : WIDGETCORStype ?? SizedBox(),
                 ),
               ],
-              if (FORMULA != null) ...[
+              if (ShowFORMULA ?? true) ...[
                 Expanded(
                   flex: 2,
-                  child: EACHCELL(
-                    data: FORMULA ?? "",
-                    tapCell: (v) {},
-                  ),
+                  child: WIDGETFORMULA == null
+                      ? EACHCELL(
+                          data: FORMULA ?? "",
+                          tapCell: (v) {},
+                        )
+                      : WIDGETFORMULA ?? SizedBox(),
                 ),
               ],
-              if (SCMARK != null) ...[
+              if (ShowSCMARK ?? true) ...[
                 Expanded(
                   flex: 1,
-                  child: EACHCELL(
-                    data: SCMARK ?? "",
-                    tapCell: (v) {},
-                  ),
+                  child: WIDGETSCMARK == null
+                      ? EACHCELL(
+                          data: SCMARK ?? "",
+                          tapCell: (v) {},
+                        )
+                      : WIDGETSCMARK ?? SizedBox(),
                 ),
               ],
-              if (SCMARKtype != null) ...[
+              if (ShowSCMARKtype ?? true) ...[
                 Expanded(
                   flex: 1,
-                  child: EACHCELL(
-                    data: SCMARKtype ?? "",
-                    tapCell: (v) {},
-                  ),
+                  child: WIDGETSCMARKtype == null
+                      ? EACHCELL(
+                          data: SCMARKtype ?? "",
+                          tapCell: (v) {},
+                        )
+                      : WIDGETSCMARKtype ?? SizedBox(),
                 ),
               ],
-              if (DOCUMENT != null) ...[
-                Expanded(
-                  flex: 1,
-                  child: EACHCELL(
-                    data: DOCUMENT ?? "",
-                    tapCell: (v) {},
-                  ),
-                ),
-              ],
-              if (METHOD != null) ...[
+              if (ShowDOCUMENT ?? true) ...[
                 Expanded(
                   flex: 2,
-                  child: EACHCELL(
-                    data: METHOD ?? "",
-                    tapCell: (v) {},
-                  ),
+                  child: WIDGETDOCUMENT == null
+                      ? EACHCELL(
+                          data: DOCUMENT ?? "",
+                          tapCell: (v) {},
+                        )
+                      : WIDGETDOCUMENT ?? SizedBox(),
                 ),
               ],
-              if (IMGreaddata != null) ...[
+              if (ShowMETHOD ?? true) ...[
                 Expanded(
                   flex: 2,
-                  child: EACHCELL(
-                    data: IMGreaddata ?? "",
-                    tapCell: (v) {},
-                  ),
+                  child: WIDGETMETHOD == null
+                      ? EACHCELL(
+                          data: METHOD ?? "",
+                          tapCell: (v) {},
+                        )
+                      : WIDGETMETHOD ?? SizedBox(),
                 ),
               ],
-              if (IMGno != null) ...[
+              if (ShowIMGreaddata ?? true) ...[
                 Expanded(
                   flex: 2,
-                  child: EACHCELL(
-                    data: IMGno ?? "",
-                    tapCell: (v) {},
-                  ),
+                  child: WIDGETIMGreaddata == null
+                      ? EACHCELL(
+                          data: IMGreaddata ?? "",
+                          tapCell: (v) {},
+                        )
+                      : WIDGETIMGreaddata ?? SizedBox(),
                 ),
               ],
-              if (LOAD != null) ...[
+              if (ShowIMGno ?? true) ...[
+                Expanded(
+                  flex: 2,
+                  child: WIDGETIMGno == null
+                      ? EACHCELL(
+                          data: IMGno ?? "",
+                          tapCell: (v) {},
+                        )
+                      : WIDGETIMGno ?? SizedBox(),
+                ),
+              ],
+              if (ShowLOAD ?? true) ...[
                 Expanded(
                   flex: 1,
-                  child: EACHCELL(
-                    data: LOAD ?? "",
-                    tapCell: (v) {},
-                  ),
+                  child: WIDGETLOAD == null
+                      ? EACHCELL(
+                          data: LOAD ?? "",
+                          tapCell: (v) {},
+                        )
+                      : WIDGETLOAD ?? SizedBox(),
                 ),
               ],
-              if (GT != null) ...[
+              if (ShowGT ?? true) ...[
                 Expanded(
                   flex: 1,
-                  child: EACHCELL(
-                    data: GT ?? "",
-                    tapCell: (v) {},
-                  ),
+                  child: WIDGETGT == null
+                      ? EACHCELL(
+                          data: GT ?? "",
+                          tapCell: (v) {},
+                        )
+                      : WIDGETGT ?? SizedBox(),
                 ),
               ],
-              if (SPECIFICATIONve != null) ...[
+              if (ShowSPECIFICATIONve ?? true) ...[
                 Expanded(
                   flex: 1,
-                  child: EACHCELL(
-                    data: SPECIFICATIONve ?? "",
-                    tapCell: (v) {},
-                  ),
+                  child: WIDGETSPECIFICATIONve == null
+                      ? EACHCELL(
+                          data: SPECIFICATIONve ?? "",
+                          tapCell: (v) {},
+                        )
+                      : WIDGETSPECIFICATIONve ?? SizedBox(),
                 ),
               ],
-              if (UNIT != null) ...[
+              if (ShowCALCULATE ?? true) ...[
                 Expanded(
                   flex: 1,
-                  child: EACHCELL(
-                    data: UNIT ?? "",
-                    tapCell: (v) {},
-                  ),
+                  child: WIDGETCALCULATE == null
+                      ? EACHCELL(
+                          data: CALCULATE ?? "",
+                          tapCell: (v) {},
+                        )
+                      : WIDGETCALCULATE ?? SizedBox(),
                 ),
               ],
-              if (CONVERSE != null) ...[
+              if (ShowUNIT ?? true) ...[
                 Expanded(
                   flex: 1,
-                  child: EACHCELL(
-                    data: CONVERSE ?? "",
-                    tapCell: (v) {},
-                  ),
+                  child: WIDGETUNIT == null
+                      ? EACHCELL(
+                          data: UNIT ?? "",
+                          tapCell: (v) {},
+                        )
+                      : WIDGETUNIT ?? SizedBox(),
                 ),
               ],
-              if (POSITION != null) ...[
+              if (ShowCONVERSE ?? true) ...[
                 Expanded(
                   flex: 1,
-                  child: EACHCELL(
-                    data: POSITION ?? "",
-                    tapCell: (v) {},
-                  ),
+                  child: WIDGETCONVERSE == null
+                      ? EACHCELL(
+                          data: CONVERSE ?? "",
+                          tapCell: (v) {},
+                        )
+                      : WIDGETCONVERSE ?? SizedBox(),
                 ),
               ],
-              if (PCS != null) ...[
+              if (ShowPOSITION ?? true) ...[
                 Expanded(
                   flex: 1,
-                  child: EACHCELL(
-                    data: PCS ?? "",
-                    tapCell: (v) {},
-                  ),
+                  child: WIDGETPOSITION == null
+                      ? EACHCELL(
+                          data: POSITION ?? "",
+                          tapCell: (v) {},
+                        )
+                      : WIDGETPOSITION ?? SizedBox(),
                 ),
               ],
-              if (FREQUENCY != null) ...[
+              if (ShowPCS ?? true) ...[
                 Expanded(
                   flex: 1,
-                  child: EACHCELL(
-                    data: FREQUENCY ?? "",
-                    tapCell: (v) {},
-                  ),
+                  child: WIDGETPCS == null
+                      ? EACHCELL(
+                          data: PCS ?? "",
+                          tapCell: (v) {},
+                        )
+                      : WIDGETPCS ?? SizedBox(),
                 ),
               ],
-              if (REMARK != null) ...[
+              if (ShowFREQUENCY ?? true) ...[
                 Expanded(
                   flex: 1,
-                  child: EACHCELL(
-                    data: REMARK ?? "",
-                    tapCell: (v) {},
-                  ),
+                  child: WIDGETFREQUENCY == null
+                      ? EACHCELL(
+                          data: FREQUENCY ?? "",
+                          tapCell: (v) {},
+                        )
+                      : WIDGETFREQUENCY ?? SizedBox(),
                 ),
               ],
-              if (SWreport != null) ...[
+              if (ShowREMARK ?? true) ...[
                 Expanded(
                   flex: 1,
-                  child: EACHCELL(
-                    data: SWreport ?? "",
-                    tapCell: (v) {},
-                  ),
+                  child: WIDGETREMARK == null
+                      ? EACHCELL(
+                          data: REMARK ?? "",
+                          tapCell: (v) {},
+                        )
+                      : WIDGETREMARK ?? SizedBox(),
                 ),
               ],
-              Expanded(
-                flex: 1,
-                child: isACTION ?? false
-                    ? ACTIONCELL(
-                        DeleteFN: (v) {
-                          if (DeleteFN != null) {
-                            DeleteFN!("DeleteFN");
-                          }
-                        },
-                        EditFN: (v) {
-                          if (EditFN != null) {
-                            EditFN!("EditFN");
-                          }
-                        },
-                      )
-                    : EACHCELL(
-                        data: ACTION ?? "",
-                        tapCell: (v) {},
-                      ),
-              ),
+              if (ShowSWreport ?? true) ...[
+                Expanded(
+                  flex: 1,
+                  child: WIDGETSWreport == null
+                      ? EACHCELL(
+                          data: SWreport ?? "",
+                          tapCell: (v) {},
+                        )
+                      : WIDGETSWreport ?? SizedBox(),
+                ),
+              ],
+              if (_ACTIONMODE == 0) ...[
+                Expanded(
+                  flex: 1,
+                  child: isACTION ?? false
+                      ? ACTIONCELL(
+                          DeleteFN: (v) {
+                            if (DeleteFN != null) {
+                              DeleteFN!("DeleteFN");
+                            }
+                          },
+                          EditFN: (v) {
+                            if (EditFN != null) {
+                              EditFN!("EditFN");
+                            }
+                          },
+                        )
+                      : EACHCELL(
+                          data: ACTION ?? "",
+                          tapCell: (v) {},
+                        ),
+                ),
+              ] else if (_ACTIONMODE == 1) ...[
+                Expanded(
+                  flex: 1,
+                  child: isACTION ?? false
+                      ? ACTIONCELLs(
+                          SaveFN: (v) {
+                            if (SAVEFN != null) {
+                              SAVEFN!("SAVEFN");
+                            }
+                          },
+                        )
+                      : EACHCELL(
+                          data: ACTION ?? "",
+                          tapCell: (v) {},
+                        ),
+                ),
+              ],
             ],
           )
         ],
