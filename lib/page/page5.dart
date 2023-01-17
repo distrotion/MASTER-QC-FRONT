@@ -54,10 +54,11 @@ class FINSPECTIONget_Bloc_5PBloc extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider(
         create: (_) => FINSPECTIONget_Bloc(),
-        child: BlocBuilder<FINSPECTIONget_Bloc, int>(
-          builder: (context, data) {
+        child: BlocBuilder<FINSPECTIONget_Bloc, InspectionSTD>(
+          builder: (context, Mdata) {
             return Page5Body(
               DDstep: DDstep,
+              Mdata: Mdata,
             );
           },
         ));
@@ -65,14 +66,19 @@ class FINSPECTIONget_Bloc_5PBloc extends StatelessWidget {
 }
 
 class Page5Body extends StatelessWidget {
-  Page5Body({Key? key, this.DDstep}) : super(key: key);
+  Page5Body({
+    Key? key,
+    this.DDstep,
+    this.Mdata,
+  }) : super(key: key);
   DROPDOWN_INS_STEP1? DDstep;
-
+  InspectionSTD? Mdata;
   @override
   Widget build(BuildContext context) {
     return Center(
       child: INSPECTIONstdMAIN(
         DDstep: DDstep,
+        Mdata: Mdata,
       ),
     );
   }

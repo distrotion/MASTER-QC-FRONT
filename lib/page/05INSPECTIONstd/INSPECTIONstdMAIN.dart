@@ -16,8 +16,10 @@ class INSPECTIONstdMAIN extends StatefulWidget {
   INSPECTIONstdMAIN({
     super.key,
     this.DDstep,
+    this.Mdata,
   });
   DROPDOWN_INS_STEP1? DDstep;
+  InspectionSTD? Mdata;
 
   @override
   State<INSPECTIONstdMAIN> createState() => _INSPECTIONstdMAINState();
@@ -36,11 +38,19 @@ class _INSPECTIONstdMAINState extends State<INSPECTIONstdMAIN> {
     ScrollController controllerIN01 = ScrollController();
     ScrollController controllerIN02 = ScrollController();
 
+    InspectionSTD _Mdata = widget.Mdata ??
+        InspectionSTD(
+          INCOMMING: [],
+          INPROCESS: [],
+          FINAL: [],
+        );
+
+    if (_Mdata.status == 'GET_ALL') {}
+
     DROPDOWN_INS_STEP1 _DDstep = widget.DDstep ??
         DROPDOWN_INS_STEP1(
           //
           ITEMSdd: [],
-          //
           COREdd: [],
           SCMASKdd: [],
           SCMASKTYPEdd: [],
@@ -64,6 +74,7 @@ class _INSPECTIONstdMAINState extends State<INSPECTIONstdMAIN> {
       INSPECTIONstdVAR.List_FINAL_LOAD = _DDstep.LOADdd;
       INSPECTIONstdVAR.List_FINAL_GT = _DDstep.GTdd;
       INSPECTIONstdVAR.List_FINAL_UNIT = _DDstep.UNITdd;
+      INSPECTIONstdVAR.List_FINAL_UNIT_CONVERST = _DDstep.UNITdd;
       INSPECTIONstdVAR.List_FINAL_FREQUENCY = _DDstep.FREQUENCYdd;
       INSPECTIONstdVAR.List_FINAL_CORETYPE = _DDstep.COREdd;
       INSPECTIONstdVAR.FINAL_RESULTFORMATdata = _DDstep.RESULTFORMATdata;
@@ -136,46 +147,7 @@ class _INSPECTIONstdMAINState extends State<INSPECTIONstdMAIN> {
                       Spacer(),
                       InkWell(
                         onTap: () {
-                          INSPECTIONstdVAR.FINAL_seq = "0";
-                          INSPECTIONstdVAR.FINAL_ITEMs = "";
-                          INSPECTIONstdVAR.FINAL_COREtype = "";
-                          INSPECTIONstdVAR.FINAL_FORMULA = "";
-                          INSPECTIONstdVAR.FINAL_SCMARK = "";
-                          INSPECTIONstdVAR.FINAL_SCMARKtype = "";
-                          INSPECTIONstdVAR.FINAL_DOCUMENT = "";
-                          INSPECTIONstdVAR.FINAL_METHOD = "";
-                          INSPECTIONstdVAR.FINAL_IMGreaddata = "";
-                          INSPECTIONstdVAR.FINAL_IMGno = "";
-                          INSPECTIONstdVAR.FINAL_LOAD = "";
-                          INSPECTIONstdVAR.FINAL_GT = "";
-                          INSPECTIONstdVAR.FINAL_SPECIFICATION = "";
-                          INSPECTIONstdVAR.FINAL_SPECIFICATIONve = "";
-                          INSPECTIONstdVAR.FINAL_SPECIFICATIONveOB = veOB();
-                          INSPECTIONstdVAR.FINAL_UNIT = "";
-                          INSPECTIONstdVAR.FINAL_POINTPCS = "";
-                          INSPECTIONstdVAR.FINAL_PCS = "";
-                          INSPECTIONstdVAR.FINAL_FREQUENCY = "";
-                          INSPECTIONstdVAR.FINAL_REMARK = "";
-                          INSPECTIONstdVAR.FINAL_RESULTFORMATdata = "";
-                          INSPECTIONstdVAR.FINAL_SPECIFICATIONveOB.condition =
-                              "";
-
-                          INSPECTIONstdVAR.FINAL_CAL_K1_N = "";
-                          INSPECTIONstdVAR.FINAL_CAL_K2_N = "";
-                          INSPECTIONstdVAR.FINAL_CAL_K3_N = "";
-                          INSPECTIONstdVAR.FINAL_CAL_K1b = false;
-                          INSPECTIONstdVAR.FINAL_CAL_K2b = false;
-                          INSPECTIONstdVAR.FINAL_CAL_K3b = false;
-                          if (INSPECTIONstdVAR.FINAL_POP) {
-                            INSPECTIONstdVAR.FINAL_POP = false;
-                          } else {
-                            INSPECTIONstdVAR.FINAL_POP = true;
-                          }
-
-                          context
-                              .read<INSPECTION_DDSTEP_Bloc>()
-                              .add(INSPECTION_GET_STEP1());
-                          // FINALPOPUP(context);
+                          newdata(context);
                         },
                         child: Container(
                           color: Colors.blue,
@@ -246,35 +218,150 @@ class _INSPECTIONstdMAINState extends State<INSPECTIONstdMAIN> {
                                   isACTION: false,
                                 ),
                               ),
-                              for (int i = 0; i < 3; i++) ...[
+                              for (int i = 0; i < _Mdata.FINAL.length; i++) ...[
                                 Container(
                                   constraints: BoxConstraints(minHeight: 100),
                                   child: PATTERNtable(
                                     BGColorMain: i.isEven
                                         ? Colors.grey.shade50
                                         : Colors.grey.shade200,
-                                    seq: "seq",
-                                    ITEMs: "ITEMs",
-                                    CORStype: "CORStype",
-                                    FORMULA: "FORMULA",
-                                    SCMARK: "SCMARK",
-                                    SCMARKtype: "SCMARKtype",
-                                    DOCUMENT: "DOCUMENT",
-                                    METHOD: "METHOD",
-                                    IMGreaddata: "IMGreaddata",
-                                    IMGno: "IMGno",
-                                    LOAD: "LOAD",
-                                    GT: "GT",
-                                    SPECIFICATIONve: "SPECIFICATIONve",
-                                    CALCULATE: "CALCULATE",
-                                    UNIT: "UNIT",
-                                    CONVERSE: "CONVERSE",
-                                    POSITION: "POSITION",
-                                    PCS: "PCS",
-                                    FREQUENCY: "FREQUENCY",
-                                    REMARK: "REMARK",
-                                    SWreport: "SWreport",
+                                    seq: _Mdata.FINAL[i].seq,
+                                    ITEMs: _Mdata.FINAL[i].ITEMsname,
+                                    CORStype: "-",
+                                    FORMULA: "-",
+                                    SCMARK: _Mdata.FINAL[i].SCMARK,
+                                    SCMARKtype: "-",
+                                    DOCUMENT: _Mdata.FINAL[i].DOCUMENT,
+                                    METHOD: _Mdata.FINAL[i].METHODname,
+                                    IMGreaddata: "-",
+                                    IMGno: "-",
+                                    LOAD: _Mdata.FINAL[i].LOAD,
+                                    GT: "-",
+                                    SPECIFICATIONve:
+                                        _Mdata.FINAL[i].SPECIFICATIONvename,
+                                    CALCULATE: "-",
+                                    UNIT: _Mdata.FINAL[i].UNITname,
+                                    CONVERSE: _Mdata.FINAL[i].CONVERSEname,
+                                    POSITION: "-",
+                                    PCS: _Mdata.FINAL[i].PCS,
+                                    FREQUENCY: _Mdata.FINAL[i].FREQUENCY,
+                                    REMARK: _Mdata.FINAL[i].REMARK,
+                                    SWreport: "-",
                                     ACTION: "ACTION",
+                                    EditFN: (v) {
+                                      //
+                                      // print(_Mdata.FINAL[i]);
+                                      INSPECTIONstdVAR.FINAL_seq =
+                                          _Mdata.FINAL[i].seq;
+                                      INSPECTIONstdVAR.FINAL_ITEMs =
+                                          _Mdata.FINAL[i].ITEMs;
+
+                                      INSPECTIONstdVAR.FINAL_COREtype = "";
+                                      INSPECTIONstdVAR.FINAL_FORMULA = "";
+                                      INSPECTIONstdVAR.FINAL_SCMARK =
+                                          _Mdata.FINAL[i].SCMARK;
+                                      INSPECTIONstdVAR.FINAL_SCMARKtype = "";
+                                      INSPECTIONstdVAR.FINAL_DOCUMENT =
+                                          _Mdata.FINAL[i].DOCUMENT;
+
+                                      if (_Mdata.FINAL[i].METHOD != '') {
+                                        INSPECTIONstdVAR.List_FINAL_METHOD = [
+                                          MapEntry("", ""),
+                                          MapEntry(_Mdata.FINAL[i].METHODname,
+                                              _Mdata.FINAL[i].METHOD)
+                                        ];
+
+                                        INSPECTIONstdVAR.FINAL_METHOD =
+                                            _Mdata.FINAL[i].METHOD;
+                                      }
+
+                                      INSPECTIONstdVAR.FINAL_IMGreaddata = "";
+                                      INSPECTIONstdVAR.FINAL_IMGno = "";
+                                      INSPECTIONstdVAR.FINAL_LOAD =
+                                          _Mdata.FINAL[i].LOAD;
+                                      INSPECTIONstdVAR.FINAL_GT = "";
+                                      INSPECTIONstdVAR.FINAL_SPECIFICATION = "";
+                                      INSPECTIONstdVAR.FINAL_SPECIFICATIONve =
+                                          "";
+                                      INSPECTIONstdVAR.FINAL_SPECIFICATIONveOB =
+                                          veOB();
+                                      if (_Mdata.FINAL[i].UNIT != '') {
+                                        INSPECTIONstdVAR.List_FINAL_UNIT = [
+                                          MapEntry("", ""),
+                                          MapEntry(_Mdata.FINAL[i].UNITname,
+                                              _Mdata.FINAL[i].UNIT)
+                                        ];
+
+                                        INSPECTIONstdVAR.FINAL_UNIT =
+                                            _Mdata.FINAL[i].UNIT;
+                                      } else {
+                                        INSPECTIONstdVAR.FINAL_UNIT = "";
+                                      }
+
+                                      if (_Mdata.FINAL[i].CONVERSE != '') {
+                                        INSPECTIONstdVAR
+                                            .List_FINAL_UNIT_CONVERST = [
+                                          MapEntry("", ""),
+                                          MapEntry(_Mdata.FINAL[i].CONVERSEname,
+                                              _Mdata.FINAL[i].CONVERSE)
+                                        ];
+
+                                        INSPECTIONstdVAR.FINAL_UNIT_CONVERST =
+                                            _Mdata.FINAL[i].CONVERSE;
+                                      } else {
+                                        INSPECTIONstdVAR.FINAL_UNIT_CONVERST =
+                                            "";
+                                      }
+
+                                      INSPECTIONstdVAR.FINAL_POINTPCS = "";
+                                      INSPECTIONstdVAR.FINAL_PCS =
+                                          _Mdata.FINAL[i].PCS;
+                                      // INSPECTIONstdVAR.FINAL_FREQUENCY =
+                                      //     _Mdata.FINAL[i].FREQUENCY;
+
+                                      if (_Mdata.FINAL[i].FREQUENCY != '') {
+                                        INSPECTIONstdVAR.List_FINAL_FREQUENCY =
+                                            [
+                                          MapEntry("", ""),
+                                          MapEntry(_Mdata.FINAL[i].FREQUENCY,
+                                              _Mdata.FINAL[i].FREQUENCY)
+                                        ];
+
+                                        INSPECTIONstdVAR.FINAL_FREQUENCY =
+                                            _Mdata.FINAL[i].FREQUENCY;
+                                      } else {
+                                        INSPECTIONstdVAR.FINAL_FREQUENCY = "";
+                                      }
+                                      INSPECTIONstdVAR.FINAL_REMARK =
+                                          _Mdata.FINAL[i].REMARK;
+                                      INSPECTIONstdVAR.FINAL_RESULTFORMATdata =
+                                          _Mdata.FINAL[i].RESULTFORMAT;
+                                      INSPECTIONstdVAR.FINAL_SWreport = "";
+
+                                      INSPECTIONstdVAR.FINAL_CALCULATE = "";
+                                      INSPECTIONstdVAR.FINAL_CAL_K1 = "";
+                                      INSPECTIONstdVAR.FINAL_CAL_K2 = "";
+                                      INSPECTIONstdVAR.FINAL_CAL_K3 = "";
+
+                                      INSPECTIONstdVAR.FINAL_CAL_K1_N = "";
+                                      INSPECTIONstdVAR.FINAL_CAL_K2_N = "";
+                                      INSPECTIONstdVAR.FINAL_CAL_K3_N = "";
+                                      INSPECTIONstdVAR.FINAL_CAL_K1b = false;
+                                      INSPECTIONstdVAR.FINAL_CAL_K2b = false;
+                                      INSPECTIONstdVAR.FINAL_CAL_K3b = false;
+
+                                      if (INSPECTIONstdVAR.FINAL_POP) {
+                                        INSPECTIONstdVAR.FINAL_POP = false;
+                                      } else {
+                                        INSPECTIONstdVAR.FINAL_POP = true;
+                                      }
+
+                                      context
+                                          .read<INSPECTION_DDSTEP_Bloc>()
+                                          .add(INSPECTION_GET_STEP1());
+
+                                      //
+                                    },
                                     isACTION: true,
                                   ),
                                 ),
@@ -285,7 +372,7 @@ class _INSPECTIONstdMAINState extends State<INSPECTIONstdMAIN> {
                       ),
                     ),
                   ),
-                  if (INSPECTIONstdVAR.FINAL_POP)
+                  if (INSPECTIONstdVAR.FINAL_POP) ...[
                     Scrollbar(
                       controller: controllerIN02,
                       thumbVisibility: true,
@@ -305,25 +392,25 @@ class _INSPECTIONstdMAINState extends State<INSPECTIONstdMAIN> {
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                // InkWell(
-                                //   onLongPress: () {
-                                //     POPUPyn(context, (v) {
-                                //       clear();
-                                //     }, "CLEAR DATA", 120, 90);
-                                //   },
-                                //   child: Container(
-                                //     height: 40,
-                                //     color: Colors.red,
-                                //     child: Center(
-                                //       child: Text(
-                                //         "CLEAR",
-                                //         style: TextStyle(
-                                //           color: Colors.white,
-                                //         ),
-                                //       ),
-                                //     ),
-                                //   ),
-                                // ),
+                                InkWell(
+                                  onLongPress: () {
+                                    setState(() {
+                                      newdata(context);
+                                    });
+                                  },
+                                  child: Container(
+                                    height: 40,
+                                    color: Colors.red,
+                                    child: Center(
+                                      child: Text(
+                                        "CLEAR",
+                                        style: TextStyle(
+                                          color: Colors.white,
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ),
                                 SizedBox(
                                   height: 40,
                                   child: PATTERNtable(
@@ -489,17 +576,42 @@ class _INSPECTIONstdMAINState extends State<INSPECTIONstdMAIN> {
                                           )
                                         : null,
                                     SCMARK: "SCMARK",
-                                    WIDGETSCMARK: AdvanceDropDown(
-                                      imgpath:
-                                          'assets/icons/icon-down_4@3x.png',
-                                      listdropdown:
-                                          INSPECTIONstdVAR.List_FINAL_SCMARK,
-                                      onChangeinside: (d, k) {
-                                        INSPECTIONstdVAR.FINAL_SCMARK = d;
-                                      },
-                                      value: INSPECTIONstdVAR.FINAL_SCMARK,
-                                      height: 40,
-                                      width: 400,
+                                    WIDGETSCMARK: Column(
+                                      children: [
+                                        AdvanceDropDown(
+                                          imgpath:
+                                              'assets/icons/icon-down_4@3x.png',
+                                          listdropdown: INSPECTIONstdVAR
+                                              .List_FINAL_SCMARK,
+                                          onChangeinside: (d, k) {
+                                            setState(() {
+                                              INSPECTIONstdVAR.FINAL_SCMARK = d;
+                                            });
+                                          },
+                                          value: INSPECTIONstdVAR.FINAL_SCMARK,
+                                          height: 40,
+                                          width: 400,
+                                        ),
+                                        if (INSPECTIONstdVAR.FINAL_SCMARK ==
+                                            'YES')
+                                          AdvanceDropDown(
+                                            imgpath:
+                                                'assets/icons/icon-down_4@3x.png',
+                                            listdropdown: [
+                                              MapEntry("", ""),
+                                              MapEntry("1", "1"),
+                                              MapEntry("2", "2")
+                                            ],
+                                            onChangeinside: (d, k) {
+                                              INSPECTIONstdVAR
+                                                  .FINAL_SCMARKtype = d;
+                                            },
+                                            value: INSPECTIONstdVAR
+                                                .FINAL_SCMARKtype,
+                                            height: 40,
+                                            width: 400,
+                                          ),
+                                      ],
                                     ),
                                     SCMARKtype: "SCMARKtype",
                                     ShowSCMARKtype: false,
@@ -520,21 +632,58 @@ class _INSPECTIONstdMAINState extends State<INSPECTIONstdMAIN> {
                                       },
                                     ),
                                     METHOD: "METHOD",
-                                    WIDGETMETHOD: AdvanceDropDown(
-                                      imgpath:
-                                          'assets/icons/icon-down_4@3x.png',
-                                      listdropdown:
-                                          INSPECTIONstdVAR.List_FINAL_METHOD,
-                                      onChangeinside: (d, k) {
-                                        INSPECTIONstdVAR.FINAL_METHOD = d;
+                                    WIDGETMETHOD: Column(
+                                      children: [
+                                        AdvanceDropDown(
+                                          imgpath:
+                                              'assets/icons/icon-down_4@3x.png',
+                                          listdropdown: INSPECTIONstdVAR
+                                              .List_FINAL_METHOD,
+                                          onChangeinside: (d, k) {
+                                            INSPECTIONstdVAR.FINAL_METHOD = d;
 
-                                        context
-                                            .read<INSPECTION_DDSTEP_Bloc>()
-                                            .add(INSPECTION_GET_DOCUMENT());
-                                      },
-                                      value: INSPECTIONstdVAR.FINAL_METHOD,
-                                      height: 40,
-                                      width: 400,
+                                            context
+                                                .read<INSPECTION_DDSTEP_Bloc>()
+                                                .add(INSPECTION_GET_DOCUMENT());
+                                          },
+                                          value: INSPECTIONstdVAR.FINAL_METHOD,
+                                          height: 40,
+                                          width: 400,
+                                        ),
+                                        if (INSPECTIONstdVAR
+                                                    .FINAL_RESULTFORMATdata ==
+                                                'Picture' ||
+                                            INSPECTIONstdVAR
+                                                    .FINAL_RESULTFORMATdata ==
+                                                'OCR') ...[
+                                          AdvanceDropDown(
+                                            imgpath:
+                                                'assets/icons/icon-down_4@3x.png',
+                                            listdropdown: INSPECTIONstdVAR
+                                                .List_FINAL_IMGreaddata,
+                                            onChangeinside: (d, k) {
+                                              INSPECTIONstdVAR
+                                                  .FINAL_IMGreaddata = d;
+                                            },
+                                            value: INSPECTIONstdVAR
+                                                .FINAL_IMGreaddata,
+                                            height: 40,
+                                            width: 400,
+                                          ),
+                                          AdvanceDropDown(
+                                            imgpath:
+                                                'assets/icons/icon-down_4@3x.png',
+                                            listdropdown: INSPECTIONstdVAR
+                                                .List_FINAL_IMGno,
+                                            onChangeinside: (d, k) {
+                                              INSPECTIONstdVAR.FINAL_IMGno = d;
+                                            },
+                                            value: INSPECTIONstdVAR.FINAL_IMGno,
+                                            height: 40,
+                                            width: 400,
+                                          )
+                                        ],
+                                      ],
                                     ),
                                     IMGreaddata: "IMGreaddata",
                                     WIDGETIMGreaddata: AdvanceDropDown(
@@ -762,8 +911,8 @@ class _INSPECTIONstdMAINState extends State<INSPECTIONstdMAIN> {
                                     WIDGETCONVERSE: AdvanceDropDown(
                                       imgpath:
                                           'assets/icons/icon-down_4@3x.png',
-                                      listdropdown:
-                                          INSPECTIONstdVAR.List_FINAL_UNIT,
+                                      listdropdown: INSPECTIONstdVAR
+                                          .List_FINAL_UNIT_CONVERST,
                                       onChangeinside: (d, k) {
                                         INSPECTIONstdVAR.FINAL_UNIT_CONVERST =
                                             d;
@@ -850,9 +999,7 @@ class _INSPECTIONstdMAINState extends State<INSPECTIONstdMAIN> {
                                     ACTION: "ACTION",
                                     isACTION: true,
                                     ACTIONMODE: 1,
-                                    SAVEFN: (v) {
-                                      print(v);
-                                    },
+                                    SAVEFN: (v) {},
                                   ),
                                 ),
                               ],
@@ -860,7 +1007,27 @@ class _INSPECTIONstdMAINState extends State<INSPECTIONstdMAIN> {
                           ),
                         ),
                       ),
+                    )
+                  ] else ...[
+                    InkWell(
+                      onTap: () {
+                        newdata(context);
+                      },
+                      child: Container(
+                        color: Colors.blue,
+                        height: 40,
+                        // width: 100,
+                        child: Center(
+                          child: Text(
+                            "NEW",
+                            style: TextStyle(
+                              color: Colors.white,
+                            ),
+                          ),
+                        ),
+                      ),
                     ),
+                  ],
                   SizedBox(
                     height: 24,
                   ),
@@ -931,4 +1098,44 @@ class _INSPECTIONstdMAINState extends State<INSPECTIONstdMAIN> {
 
     context.read<INSPECTION_DDSTEP_Bloc>().add(INSPECTION_GET_STEP1());
   }
+}
+
+newdata(BuildContext context) {
+  INSPECTIONstdVAR.FINAL_seq = "0";
+  INSPECTIONstdVAR.FINAL_ITEMs = "";
+  INSPECTIONstdVAR.FINAL_COREtype = "";
+  INSPECTIONstdVAR.FINAL_FORMULA = "";
+  INSPECTIONstdVAR.FINAL_SCMARK = "";
+  INSPECTIONstdVAR.FINAL_SCMARKtype = "";
+  INSPECTIONstdVAR.FINAL_DOCUMENT = "";
+  INSPECTIONstdVAR.FINAL_METHOD = "";
+  INSPECTIONstdVAR.FINAL_IMGreaddata = "";
+  INSPECTIONstdVAR.FINAL_IMGno = "";
+  INSPECTIONstdVAR.FINAL_LOAD = "";
+  INSPECTIONstdVAR.FINAL_GT = "";
+  INSPECTIONstdVAR.FINAL_SPECIFICATION = "";
+  INSPECTIONstdVAR.FINAL_SPECIFICATIONve = "";
+  INSPECTIONstdVAR.FINAL_SPECIFICATIONveOB = veOB();
+  INSPECTIONstdVAR.FINAL_UNIT = "";
+  INSPECTIONstdVAR.FINAL_POINTPCS = "";
+  INSPECTIONstdVAR.FINAL_PCS = "";
+  INSPECTIONstdVAR.FINAL_FREQUENCY = "";
+  INSPECTIONstdVAR.FINAL_REMARK = "";
+  INSPECTIONstdVAR.FINAL_RESULTFORMATdata = "";
+  INSPECTIONstdVAR.FINAL_SPECIFICATIONveOB.condition = "";
+
+  INSPECTIONstdVAR.FINAL_CAL_K1_N = "";
+  INSPECTIONstdVAR.FINAL_CAL_K2_N = "";
+  INSPECTIONstdVAR.FINAL_CAL_K3_N = "";
+  INSPECTIONstdVAR.FINAL_CAL_K1b = false;
+  INSPECTIONstdVAR.FINAL_CAL_K2b = false;
+  INSPECTIONstdVAR.FINAL_CAL_K3b = false;
+  if (INSPECTIONstdVAR.FINAL_POP) {
+    INSPECTIONstdVAR.FINAL_POP = false;
+  } else {
+    INSPECTIONstdVAR.FINAL_POP = true;
+  }
+
+  context.read<INSPECTION_DDSTEP_Bloc>().add(INSPECTION_GET_STEP1());
+  // FINALPOPUP(context);
 }

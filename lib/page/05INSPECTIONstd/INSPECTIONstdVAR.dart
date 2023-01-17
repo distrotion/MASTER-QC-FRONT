@@ -16,6 +16,7 @@ class INSPECTIONstdVAR {
   static List<MapEntry<String, String>> List_FINAL_LOAD = [];
   static List<MapEntry<String, String>> List_FINAL_GT = [];
   static List<MapEntry<String, String>> List_FINAL_UNIT = [];
+  static List<MapEntry<String, String>> List_FINAL_UNIT_CONVERST = [];
   static List<MapEntry<String, String>> List_FINAL_FREQUENCY = [];
   static List<MapEntry<String, String>> List_FINAL_IMGreaddata = YESNO;
   static List<MapEntry<String, String>> List_FINAL_SWreport = YESNO;
