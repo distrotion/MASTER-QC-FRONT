@@ -4,6 +4,8 @@ import 'package:dio/dio.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../data/global.dart';
+import '../../page/04MATCPlist/04MATCPlistMAINvar.dart';
+import '../../page/05INSPECTIONstd/INSPECTIONstdVAR.dart';
 
 //-------------------------------------------------
 
@@ -48,10 +50,18 @@ class FINSPECTIONget_Bloc extends Bloc<FINSPECTIONget_Event, InspectionSTD> {
       INPROCESS: [],
       FINAL: [],
     );
+    INSPECTIONstdVAR.CP = MATCPlistMAINvar.CP;
+    INSPECTIONstdVAR.FG = MATCPlistMAINvar.FG;
+    INSPECTIONstdVAR.CUSTOMER = MATCPlistMAINvar.CUSTOMER;
+    INSPECTIONstdVAR.PART = MATCPlistMAINvar.PART;
+    INSPECTIONstdVAR.PARTNAME = MATCPlistMAINvar.PARTNAME;
+    INSPECTIONstdVAR.MATERIAL = MATCPlistMAINvar.MATERIAL;
+    INSPECTIONstdVAR.CUST_FULLNM = MATCPlistMAINvar.CUST_FULLNM;
+
     final response = await Dio().post(
       server + "GET_MATCP_DATA",
       data: {
-        "MATCP": "24008527",
+        "MATCP": INSPECTIONstdVAR.CP,
       },
     );
     if (response.statusCode == 200) {
@@ -269,12 +279,98 @@ class FINSPECTIONget_Bloc extends Bloc<FINSPECTIONget_Event, InspectionSTD> {
                   ? databuff[0]['FINAL'][i]['INSTRUMENTS'].toString()
                   : '',
               SPECIFICATION: databuff[0]['FINAL'][i]['SPECIFICATION'] != null
-                  ? databuff[0]['FINAL'][i]['SPECIFICATION'].toString()
+                  ? (databuff[0]['FINAL'][i]['SPECIFICATION']).length > 0
+                      ? databuff[0]['FINAL'][i]['SPECIFICATION'][0]['value'] !=
+                              null
+                          ? databuff[0]['FINAL'][i]['SPECIFICATION'][0]['value']
+                              .toString()
+                          : ''
+                      : ''
+                  : '',
+              SPECIFICATIONstr: databuff[0]['FINAL'][i]['SPECIFICATION'] != null
+                  ? (databuff[0]['FINAL'][i]['SPECIFICATION']).length > 0
+                      ? databuff[0]['FINAL'][i]['SPECIFICATION'][0]['name'] !=
+                              null
+                          ? databuff[0]['FINAL'][i]['SPECIFICATION'][0]['name']
+                              .toString()
+                          : ''
+                      : ''
                   : '',
               SPECIFICATIONve:
                   databuff[0]['FINAL'][i]['SPECIFICATIONve'] != null
                       ? databuff[0]['FINAL'][i]['SPECIFICATIONve'].toString()
                       : '',
+              SPECIFICATIONcondition: databuff[0]['FINAL'][i]
+                          ['SPECIFICATIONve'] !=
+                      null
+                  ? databuff[0]['FINAL'][i]['SPECIFICATIONve'].runtimeType ==
+                          String
+                      ? databuff[0]['FINAL'][i]['SPECIFICATIONve'].toString()
+                      : databuff[0]['FINAL'][i]['SPECIFICATIONve']
+                                  ['condition'] !=
+                              null
+                          ? databuff[0]['FINAL'][i]['SPECIFICATIONve']
+                                  ['condition']
+                              .toString()
+                          : '-'
+                  : '-',
+              SPECIFICATIONBTW_HI: databuff[0]['FINAL'][i]['SPECIFICATIONve'] !=
+                      null
+                  ? databuff[0]['FINAL'][i]['SPECIFICATIONve'].runtimeType ==
+                          String
+                      ? databuff[0]['FINAL'][i]['SPECIFICATIONve'].toString()
+                      : databuff[0]['FINAL'][i]['SPECIFICATIONve']['BTW_HI'] !=
+                              null
+                          ? databuff[0]['FINAL'][i]['SPECIFICATIONve']['BTW_HI']
+                              .toString()
+                          : '-'
+                  : '-',
+              SPECIFICATIONBTW_LOW: databuff[0]['FINAL'][i]
+                          ['SPECIFICATIONve'] !=
+                      null
+                  ? databuff[0]['FINAL'][i]['SPECIFICATIONve'].runtimeType ==
+                          String
+                      ? databuff[0]['FINAL'][i]['SPECIFICATIONve'].toString()
+                      : databuff[0]['FINAL'][i]['SPECIFICATIONve']['BTW_LOW'] !=
+                              null
+                          ? databuff[0]['FINAL'][i]['SPECIFICATIONve']
+                                  ['BTW_LOW']
+                              .toString()
+                          : '-'
+                  : '-',
+              SPECIFICATIONHIM_L: databuff[0]['FINAL'][i]['SPECIFICATIONve'] !=
+                      null
+                  ? databuff[0]['FINAL'][i]['SPECIFICATIONve'].runtimeType ==
+                          String
+                      ? databuff[0]['FINAL'][i]['SPECIFICATIONve'].toString()
+                      : databuff[0]['FINAL'][i]['SPECIFICATIONve']['HIM_L'] !=
+                              null
+                          ? databuff[0]['FINAL'][i]['SPECIFICATIONve']['HIM_L']
+                              .toString()
+                          : '-'
+                  : '-',
+              SPECIFICATIONLOL_H: databuff[0]['FINAL'][i]['SPECIFICATIONve'] !=
+                      null
+                  ? databuff[0]['FINAL'][i]['SPECIFICATIONve'].runtimeType ==
+                          String
+                      ? databuff[0]['FINAL'][i]['SPECIFICATIONve'].toString()
+                      : databuff[0]['FINAL'][i]['SPECIFICATIONve']['LOL_H'] !=
+                              null
+                          ? databuff[0]['FINAL'][i]['SPECIFICATIONve']['LOL_H']
+                              .toString()
+                          : '-'
+                  : '-',
+              SPECIFICATIONTARGET: databuff[0]['FINAL'][i]['SPECIFICATIONve'] !=
+                      null
+                  ? databuff[0]['FINAL'][i]['SPECIFICATIONve'].runtimeType ==
+                          String
+                      ? databuff[0]['FINAL'][i]['SPECIFICATIONve'].toString()
+                      : databuff[0]['FINAL'][i]['SPECIFICATIONve']['TARGET'] !=
+                              null
+                          ? databuff[0]['FINAL'][i]['SPECIFICATIONve']['TARGET']
+                              .toString()
+                          : '-'
+                  : '-',
               SPECIFICATIONvename: findSPECIFICATIONconv(
                   databuff[0]['FINAL'][i]['SPECIFICATIONve'] != null
                       ? databuff[0]['FINAL'][i]['SPECIFICATIONve'].toString()
@@ -292,9 +388,12 @@ class FINSPECTIONget_Bloc extends Bloc<FINSPECTIONget_Event, InspectionSTD> {
                   databuff[0]['FINAL'][i]['CONVERSE'] != null
                       ? databuff[0]['FINAL'][i]['CONVERSE'].toString()
                       : ''),
-              POINTPCS: databuff[0]['FINAL'][i]['POINTPCS'] != null
-                  ? databuff[0]['FINAL'][i]['POINTPCS'].toString()
-                  : '',
+              // POINTPCS: databuff[0]['FINAL'][i]['POINTPCS'] != null
+              //     ? databuff[0]['FINAL'][i]['POINTPCS'].toString()
+              //     : '',
+              // POSITION: databuff[0]['FINAL'][i]['POSITION'] != null
+              //     ? databuff[0]['FINAL'][i]['POSITION'].toString()
+              //     : '',
               POINT: databuff[0]['FINAL'][i]['POINT'] != null
                   ? databuff[0]['FINAL'][i]['POINT'].toString()
                   : '',
@@ -381,13 +480,21 @@ class speckSTD {
     this.METHODname = '',
     this.INSTRUMENTS = '',
     this.SPECIFICATION = '',
+    this.SPECIFICATIONstr = '',
     this.SPECIFICATIONve = '',
+    this.SPECIFICATIONcondition = '',
+    this.SPECIFICATIONBTW_LOW = '',
+    this.SPECIFICATIONBTW_HI = '',
+    this.SPECIFICATIONHIM_L = '',
+    this.SPECIFICATIONLOL_H = '',
+    this.SPECIFICATIONTARGET = '',
     this.SPECIFICATIONvename = '',
     this.UNIT = '',
     this.UNITname = '',
     this.CONVERSE = '',
     this.CONVERSEname = '',
-    this.POINTPCS = '',
+    // this.POINTPCS = '',
+    // this.POSITION = '',
     this.POINT = '',
     this.PCS = '',
     this.FREQUENCY = '',
@@ -411,13 +518,21 @@ class speckSTD {
   String METHODname;
   String INSTRUMENTS;
   String SPECIFICATION;
+  String SPECIFICATIONstr;
   String SPECIFICATIONve;
+  String SPECIFICATIONcondition;
+  String SPECIFICATIONBTW_LOW;
+  String SPECIFICATIONBTW_HI;
+  String SPECIFICATIONHIM_L;
+  String SPECIFICATIONLOL_H;
+  String SPECIFICATIONTARGET;
   String SPECIFICATIONvename;
   String UNIT;
   String UNITname;
   String CONVERSE;
   String CONVERSEname;
-  String POINTPCS;
+  // String POINTPCS;
+  // String POSITION;
   String POINT;
   String PCS;
   String FREQUENCY;

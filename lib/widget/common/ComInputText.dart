@@ -134,13 +134,17 @@ class _ComInputTextState extends State<ComInputText> {
     _focusNode.addListener(() {
       if (!_focusNode.hasFocus) {
         _isError = !ValidationCurrentText(_controller.value.text);
-        widget.fnContr!(false);
-        setState(() {});
+
+        setState(() {
+          widget.fnContr!(false);
+        });
         _isHideIconOnFocus = false;
       } else {
         _isError = false; //clear when input again
-        widget.fnContr!(false);
-        setState(() {});
+
+        setState(() {
+          widget.fnContr!(false);
+        });
       }
     });
     if (!widget.isPassword) {
