@@ -99,7 +99,6 @@ class menu_sub extends StatelessWidget {
         // BlocProvider.of<SwPageCubit>(context).togglePage(page);
         CuPage = page;
         CuPageLV = Lv;
-        CuPageLV = Lv;
         if (Responsive.isDesktop(context)) {
           MainBodyContext.read<ChangePage_Bloc>().add(ChangePage_nodrower());
         } else {

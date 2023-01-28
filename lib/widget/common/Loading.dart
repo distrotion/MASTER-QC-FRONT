@@ -44,16 +44,17 @@ void onLoadingType01_long5(
       newValue;
       return Dialog(
         child: SizedBox(
-            height: 75,
-            child: Row(
-              mainAxisSize: MainAxisSize.min,
-              children: const [
-                SizedBox(width: 30),
-                CircularProgressIndicator(),
-                SizedBox(width: 20),
-                Text("Loading"),
-              ],
-            )),
+          height: 75,
+          child: Row(
+            mainAxisSize: MainAxisSize.min,
+            children: const [
+              SizedBox(width: 30),
+              CircularProgressIndicator(),
+              SizedBox(width: 20),
+              Text("Loading"),
+            ],
+          ),
+        ),
       );
     },
   );

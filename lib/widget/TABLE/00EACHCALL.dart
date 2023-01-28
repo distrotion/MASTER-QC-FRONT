@@ -47,10 +47,12 @@ class ACTIONCELL extends StatelessWidget {
   ACTIONCELL({
     super.key,
     this.BGcolor,
+    this.isdelete,
     required this.EditFN,
     required this.DeleteFN,
   });
   Color? BGcolor;
+  bool? isdelete;
   Function(String)? EditFN;
   Function(String)? DeleteFN;
 
@@ -67,15 +69,17 @@ class ACTIONCELL extends StatelessWidget {
             },
             child: Icon(Icons.edit),
           ),
-          const SizedBox(
-            width: 10,
-          ),
-          InkWell(
-            onTap: () {
-              DeleteFN!("DeleteFN");
-            },
-            child: Icon(Icons.delete),
-          ),
+          if (isdelete ?? true) ...[
+            const SizedBox(
+              width: 10,
+            ),
+            InkWell(
+              onTap: () {
+                DeleteFN!("DeleteFN");
+              },
+              child: Icon(Icons.delete),
+            ),
+          ],
         ],
       ),
     );

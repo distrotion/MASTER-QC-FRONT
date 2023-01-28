@@ -60,20 +60,57 @@ class _INSPECTIONstdMAINState extends State<INSPECTIONstdMAIN> {
               height: 30,
             ),
             Container(
+              width: 2500,
               decoration: BoxDecoration(
                 border: Border.all(color: Colors.black),
-                color: Colors.orange,
+                // color: Colors.orange,
                 borderRadius: const BorderRadius.all(Radius.circular(8)),
               ),
               height: 300,
               // width: 1000,
-              child: Column(
-                children: [
-                  SizedBox(
-                    height: 40,
-                    width: 2500,
-                  )
-                ],
+              child: Padding(
+                padding: const EdgeInsets.all(16.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
+                    Column(
+                      children: [
+                        SizedBox(
+                          height: 40,
+                          child: Text(INSPECTIONstdVAR.CP),
+                        ),
+                        SizedBox(
+                          height: 40,
+                          child: Text(INSPECTIONstdVAR.FG),
+                        ),
+                        SizedBox(
+                          height: 40,
+                          child: Text(INSPECTIONstdVAR.CUSTOMER),
+                        ),
+                      ],
+                    ),
+                    Column(
+                      children: [
+                        SizedBox(
+                          height: 40,
+                          child: Text(INSPECTIONstdVAR.PART),
+                        ),
+                        SizedBox(
+                          height: 40,
+                          child: Text(INSPECTIONstdVAR.PARTNAME),
+                        ),
+                        SizedBox(
+                          height: 40,
+                          child: Text(INSPECTIONstdVAR.MATERIAL),
+                        ),
+                        SizedBox(
+                          height: 40,
+                          child: Text(INSPECTIONstdVAR.CUST_FULLNM),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
               ),
             ),
             SizedBox(
