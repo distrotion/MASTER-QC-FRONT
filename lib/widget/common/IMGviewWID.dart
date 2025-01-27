@@ -4,17 +4,17 @@ import 'dart:typed_data';
 import 'package:flutter/material.dart';
 import 'package:image/image.dart' as IMG;
 
-class PicShow extends StatefulWidget {
-  PicShow({Key? key, required this.base64, this.height, this.width})
+class PicShowW extends StatefulWidget {
+  PicShowW({Key? key, required this.base64, this.height, this.width})
       : super(key: key);
   String base64;
   double? height;
   double? width;
   @override
-  State createState() => PicShowState();
+  State createState() => PicShowWState();
 }
 
-class PicShowState extends State<PicShow> {
+class PicShowWState extends State<PicShowW> {
   // String _base64 = base64pic01;
 
   @override

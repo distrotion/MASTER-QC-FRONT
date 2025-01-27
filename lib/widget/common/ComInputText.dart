@@ -24,7 +24,7 @@ class ComInputText extends StatefulWidget {
     this.sLabel = "",
     this.sPlaceholder = "",
     this.nFontSize = 16,
-    this.nLimitedChar = 80,
+    this.nLimitedChar = 20,
     this.isNumberOnly = false,
     this.isEmail = false,
     this.isPassword = false,
@@ -134,17 +134,13 @@ class _ComInputTextState extends State<ComInputText> {
     _focusNode.addListener(() {
       if (!_focusNode.hasFocus) {
         _isError = !ValidationCurrentText(_controller.value.text);
-
-        setState(() {
-          widget.fnContr!(false);
-        });
+        widget.fnContr!(false);
+        setState(() {});
         _isHideIconOnFocus = false;
       } else {
         _isError = false; //clear when input again
-
-        setState(() {
-          widget.fnContr!(false);
-        });
+        widget.fnContr!(false);
+        setState(() {});
       }
     });
     if (!widget.isPassword) {
@@ -253,7 +249,7 @@ class _ComInputTextState extends State<ComInputText> {
       }
       bool _isContr = widget.isContr ?? false;
       if (_isContr) {
-        _controller.text = widget.sValue; //mo
+        _controller.text = widget.sValue;
       } else {}
 
       bool _isEnabled = widget.isEnabled ?? true;

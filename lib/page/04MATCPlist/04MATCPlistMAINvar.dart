@@ -1,5 +1,7 @@
 class MATCPlistMAINvar {
   //
+  static bool iscontrol = false;
+  static String Search = '';
   // static String CP = '24000542';
   // static String FG = '21000457';
   // static String CUSTOMER = 'ITO';

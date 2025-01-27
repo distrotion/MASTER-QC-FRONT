@@ -25,7 +25,7 @@ Future<String> imgpickgallery_upload() async {
     // print(image.path);
     final bytes = File(image.path).readAsBytesSync();
     String img64 = base64Encode(bytes);
-    return img64;
+    return "data:image/jpeg;base64," + img64;
   }
   return '';
 }

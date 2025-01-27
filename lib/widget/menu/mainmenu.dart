@@ -135,16 +135,16 @@ class _Data_Menu_mainmenuState extends State<Data_Menu_mainmenu> {
           ),
         ),
         if (menupop) ...[
-          menu_sub(
-            name: "INCOMMING",
-            page: Page2(),
-            Lv: 1,
-          ),
-          menu_sub(
-            name: "INPROCESS",
-            page: Page2(),
-            Lv: 1,
-          ),
+          // menu_sub(
+          //   name: "INCOMMING",
+          //   page: Page2(),
+          //   Lv: 1,
+          // ),
+          // menu_sub(
+          //   name: "INPROCESS",
+          //   page: Page2(),
+          //   Lv: 1,
+          // ),
           menu_sub(
             name: "FINAL",
             page: Page2(),

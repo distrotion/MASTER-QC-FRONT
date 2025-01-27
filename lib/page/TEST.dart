@@ -445,7 +445,7 @@ class _FileUploadButton05State extends State<FileUploadButton05> {
       width: 1000,
       child: Row(
         children: [
-          Expanded(flex: 1, child: PicShow(base64: base64pic05)),
+          Expanded(flex: 1, child: PicShowW(base64: base64pic05)),
           Expanded(
             flex: 1,
             child: FileButton(

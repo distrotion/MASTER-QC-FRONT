@@ -40,10 +40,8 @@ class Page4Body extends StatelessWidget {
   List<MATCPlistClass>? data;
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: MATCPlistMAIN(
-        data: data,
-      ),
+    return MATCPlistMAIN(
+      data: data,
     );
   }
 }

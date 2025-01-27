@@ -20,14 +20,14 @@ class FINSPECTIONget_FLUSH extends FINSPECTIONget_Event {}
 class FINSPECTIONget_Bloc extends Bloc<FINSPECTIONget_Event, InspectionSTD> {
   FINSPECTIONget_Bloc()
       : super(InspectionSTD(
-          INCOMMING: [],
+          INCOMING: [],
           INPROCESS: [],
           FINAL: [],
         )) {
     on<FINSPECTIONget_MATCP>((event, emit) {
       return _FINSPECTIONget_MATCP(
           InspectionSTD(
-            INCOMMING: [],
+            INCOMING: [],
             INPROCESS: [],
             FINAL: [],
           ),
@@ -36,7 +36,7 @@ class FINSPECTIONget_Bloc extends Bloc<FINSPECTIONget_Event, InspectionSTD> {
     on<FINSPECTIONget_FLUSH>((event, emit) {
       return _FINSPECTIONget_FLUSH(
           InspectionSTD(
-            INCOMMING: [],
+            INCOMING: [],
             INPROCESS: [],
             FINAL: [],
           ),
@@ -46,7 +46,7 @@ class FINSPECTIONget_Bloc extends Bloc<FINSPECTIONget_Event, InspectionSTD> {
   Future<void> _FINSPECTIONget_MATCP(
       InspectionSTD toAdd, Emitter<InspectionSTD> emit) async {
     InspectionSTD output = InspectionSTD(
-      INCOMMING: [],
+      INCOMING: [],
       INPROCESS: [],
       FINAL: [],
     );
@@ -70,27 +70,41 @@ class FINSPECTIONget_Bloc extends Bloc<FINSPECTIONget_Event, InspectionSTD> {
 
       output.status = 'GET_ALL';
 
-      // print(databuff[0]['findTYPE']);
-      List<BasicBodyData> findTYPE = [];
-      if (databuff[0]['findTYPE'] != null) {
-        for (int i = 0; i < databuff[0]['findTYPE'].length; i++) {
-          findTYPE.add(BasicBodyData(
-            NAME: databuff[0]['findTYPE'][i]['TYPE'] != null
-                ? databuff[0]['findTYPE'][i]['TYPE'].toString()
+      // print(databuff[0]['findTYPE_FN']);
+      List<BasicBodyData> findTYPE_FN = [];
+      if (databuff[0]['findTYPE_FN'] != null) {
+        for (int i = 0; i < databuff[0]['findTYPE_FN'].length; i++) {
+          findTYPE_FN.add(BasicBodyData(
+            NAME: databuff[0]['findTYPE_FN'][i]['TYPE'] != null
+                ? databuff[0]['findTYPE_FN'][i]['TYPE'].toString()
                 : "",
-            masterID: databuff[0]['findTYPE'][i]['masterID'] != null
-                ? databuff[0]['findTYPE'][i]['masterID'].toString()
+            masterID: databuff[0]['findTYPE_FN'][i]['masterID'] != null
+                ? databuff[0]['findTYPE_FN'][i]['masterID'].toString()
                 : "",
           ));
         }
       }
 
-      String findTYPEconv(String input) {
+      List<BasicBodyData> findTYPE_IC = [];
+      if (databuff[0]['findTYPE_IC'] != null) {
+        for (int i = 0; i < databuff[0]['findTYPE_IC'].length; i++) {
+          findTYPE_IC.add(BasicBodyData(
+            NAME: databuff[0]['findTYPE_IC'][i]['TYPE'] != null
+                ? databuff[0]['findTYPE_IC'][i]['TYPE'].toString()
+                : "",
+            masterID: databuff[0]['findTYPE_IC'][i]['masterID'] != null
+                ? databuff[0]['findTYPE_IC'][i]['masterID'].toString()
+                : "",
+          ));
+        }
+      }
+
+      String findTYPE_FNconv(String input) {
         String output = "";
 
-        for (int i = 0; i < findTYPE.length; i++) {
-          if (input == findTYPE[i].masterID) {
-            output = findTYPE[i].NAME;
+        for (int i = 0; i < findTYPE_FN.length; i++) {
+          if (input == findTYPE_FN[i].masterID) {
+            output = findTYPE_FN[i].NAME;
             break;
           }
         }
@@ -98,26 +112,12 @@ class FINSPECTIONget_Bloc extends Bloc<FINSPECTIONget_Event, InspectionSTD> {
         return output;
       }
 
-      List<BasicBodyData> findITEMs = [];
-      if (databuff[0]['findITEMs'] != null) {
-        for (int i = 0; i < databuff[0]['findITEMs'].length; i++) {
-          findITEMs.add(BasicBodyData(
-            NAME: databuff[0]['findITEMs'][i]['ITEMs'] != null
-                ? databuff[0]['findITEMs'][i]['ITEMs'].toString()
-                : "",
-            masterID: databuff[0]['findITEMs'][i]['masterID'] != null
-                ? databuff[0]['findITEMs'][i]['masterID'].toString()
-                : "",
-          ));
-        }
-      }
-
-      String findITEMsconv(String input) {
+      String findTYPE_ICconv(String input) {
         String output = "";
 
-        for (int i = 0; i < findITEMs.length; i++) {
-          if (input == findITEMs[i].masterID) {
-            output = findITEMs[i].NAME;
+        for (int i = 0; i < findTYPE_IC.length; i++) {
+          if (input == findTYPE_IC[i].masterID) {
+            output = findTYPE_IC[i].NAME;
             break;
           }
         }
@@ -125,28 +125,42 @@ class FINSPECTIONget_Bloc extends Bloc<FINSPECTIONget_Event, InspectionSTD> {
         return output;
       }
 
-      //findMACHINE
-      // print(databuff[0]['findMACHINE']);
-      List<BasicBodyData> findMACHINE = [];
-      if (databuff[0]['findMACHINE'] != null) {
-        for (int i = 0; i < databuff[0]['findMACHINE'].length; i++) {
-          findMACHINE.add(BasicBodyData(
-            NAME: databuff[0]['findMACHINE'][i]['METHOD'] != null
-                ? databuff[0]['findMACHINE'][i]['METHOD'].toString()
+      List<BasicBodyData> findITEMs_FN = [];
+      if (databuff[0]['findITEMs_FN'] != null) {
+        for (int i = 0; i < databuff[0]['findITEMs_FN'].length; i++) {
+          findITEMs_FN.add(BasicBodyData(
+            NAME: databuff[0]['findITEMs_FN'][i]['ITEMs'] != null
+                ? databuff[0]['findITEMs_FN'][i]['ITEMs'].toString()
                 : "",
-            masterID: databuff[0]['findMACHINE'][i]['masterID'] != null
-                ? databuff[0]['findMACHINE'][i]['masterID'].toString()
+            masterID: databuff[0]['findITEMs_FN'][i]['masterID'] != null
+                ? databuff[0]['findITEMs_FN'][i]['masterID'].toString()
                 : "",
           ));
         }
       }
 
-      String findMACHINEconv(String input) {
+      List<BasicBodyData> findITEMs_IC = [];
+
+      if (databuff[0]['findITEMs_IC'] != null) {
+        for (int i = 0; i < databuff[0]['findITEMs_IC'].length; i++) {
+          // print('----->${databuff[0]['findITEMs_IC'][i]['masterID']}');
+          findITEMs_IC.add(BasicBodyData(
+            NAME: databuff[0]['findITEMs_IC'][i]['ITEMs'] != null
+                ? databuff[0]['findITEMs_IC'][i]['ITEMs'].toString()
+                : "",
+            masterID: databuff[0]['findITEMs_IC'][i]['masterID'] != null
+                ? databuff[0]['findITEMs_IC'][i]['masterID'].toString()
+                : "",
+          ));
+        }
+      }
+
+      String findITEMs_FNconv(String input) {
         String output = "";
 
-        for (int i = 0; i < findMACHINE.length; i++) {
-          if (input == findMACHINE[i].masterID) {
-            output = findMACHINE[i].NAME;
+        for (int i = 0; i < findITEMs_FN.length; i++) {
+          if (input == findITEMs_FN[i].masterID) {
+            output = findITEMs_FN[i].NAME;
             break;
           }
         }
@@ -154,27 +168,13 @@ class FINSPECTIONget_Bloc extends Bloc<FINSPECTIONget_Event, InspectionSTD> {
         return output;
       }
 
-      //findUNIT
-      List<BasicBodyData> findUNIT = [];
-      if (databuff[0]['findUNIT'] != null) {
-        for (int i = 0; i < databuff[0]['findUNIT'].length; i++) {
-          findUNIT.add(BasicBodyData(
-            NAME: databuff[0]['findUNIT'][i]['UNIT'] != null
-                ? databuff[0]['findUNIT'][i]['UNIT'].toString()
-                : "",
-            masterID: databuff[0]['findUNIT'][i]['masterID'] != null
-                ? databuff[0]['findUNIT'][i]['masterID'].toString()
-                : "",
-          ));
-        }
-      }
-
-      String findUNITconv(String input) {
+      String findITEMs_ICconv(String input) {
+        // print('*----->${input}');
         String output = "";
 
-        for (int i = 0; i < findUNIT.length; i++) {
-          if (input == findUNIT[i].masterID) {
-            output = findUNIT[i].NAME;
+        for (int i = 0; i < findITEMs_IC.length; i++) {
+          if (input == findITEMs_IC[i].masterID) {
+            output = findITEMs_IC[i].NAME;
             break;
           }
         }
@@ -182,30 +182,193 @@ class FINSPECTIONget_Bloc extends Bloc<FINSPECTIONget_Event, InspectionSTD> {
         return output;
       }
 
-      //findSPECIFICATION
-      // print(databuff[0]['findSPECIFICATION']);
-      List<BasicBodyData> findSPECIFICATION = [];
-      if (databuff[0]['findSPECIFICATION'] != null) {
-        for (int i = 0; i < databuff[0]['findSPECIFICATION'].length; i++) {
-          findSPECIFICATION.add(BasicBodyData(
-            NAME: databuff[0]['findSPECIFICATION'][i]['SPECIFICATION'] != null
-                ? databuff[0]['findSPECIFICATION'][i]['SPECIFICATION']
-                    .toString()
+      //findMACHINE_FN
+      // print(databuff[0]['findMACHINE_FN']);
+      List<BasicBodyData> findMACHINE_FN = [];
+      if (databuff[0]['findMACHINE_FN'] != null) {
+        for (int i = 0; i < databuff[0]['findMACHINE_FN'].length; i++) {
+          findMACHINE_FN.add(BasicBodyData(
+            NAME: databuff[0]['findMACHINE_FN'][i]['METHOD'] != null
+                ? databuff[0]['findMACHINE_FN'][i]['METHOD'].toString()
                 : "",
-            masterID: databuff[0]['findSPECIFICATION'][i]['masterID'] != null
-                ? databuff[0]['findSPECIFICATION'][i]['masterID'].toString()
+            masterID: databuff[0]['findMACHINE_FN'][i]['masterID'] != null
+                ? databuff[0]['findMACHINE_FN'][i]['masterID'].toString()
                 : "",
           ));
         }
       }
 
-      String findSPECIFICATIONconv(String input) {
+      List<BasicBodyData> findMACHINE_IC = [];
+      if (databuff[0]['findMACHINE_IC'] != null) {
+        for (int i = 0; i < databuff[0]['findMACHINE_IC'].length; i++) {
+          // print('----->${databuff[0]['findMACHINE_IC'][i]['masterID']}');
+          findMACHINE_IC.add(BasicBodyData(
+            NAME: databuff[0]['findMACHINE_IC'][i]['METHOD'] != null
+                ? databuff[0]['findMACHINE_IC'][i]['METHOD'].toString()
+                : "",
+            masterID: databuff[0]['findMACHINE_IC'][i]['masterID'] != null
+                ? databuff[0]['findMACHINE_IC'][i]['masterID'].toString()
+                : "",
+          ));
+        }
+      }
+
+      String findMACHINE_FNconv(String input) {
+        String output = "";
+
+        for (int i = 0; i < findMACHINE_FN.length; i++) {
+          if (input == findMACHINE_FN[i].masterID) {
+            output = findMACHINE_FN[i].NAME;
+            break;
+          }
+        }
+
+        return output;
+      }
+
+      String findMACHINE_ICconv(String input) {
+        String output = "";
+        // print('----->${input}');
+        for (int i = 0; i < findMACHINE_IC.length; i++) {
+          if (input == findMACHINE_IC[i].masterID) {
+            output = findMACHINE_IC[i].NAME;
+            break;
+          }
+        }
+
+        return output;
+      }
+
+      //findUNIT_FN
+      List<BasicBodyData> findUNIT_FN = [];
+      if (databuff[0]['findUNIT_FN'] != null) {
+        for (int i = 0; i < databuff[0]['findUNIT_FN'].length; i++) {
+          findUNIT_FN.add(BasicBodyData(
+            NAME: databuff[0]['findUNIT_FN'][i]['UNIT'] != null
+                ? databuff[0]['findUNIT_FN'][i]['UNIT'].toString()
+                : "",
+            masterID: databuff[0]['findUNIT_FN'][i]['masterID'] != null
+                ? databuff[0]['findUNIT_FN'][i]['masterID'].toString()
+                : "",
+          ));
+        }
+      }
+
+      List<BasicBodyData> findUNIT_IC = [];
+      if (databuff[0]['findUNIT_IC'] != null) {
+        for (int i = 0; i < databuff[0]['findUNIT_IC'].length; i++) {
+          findUNIT_FN.add(BasicBodyData(
+            NAME: databuff[0]['findUNIT_IC'][i]['UNIT'] != null
+                ? databuff[0]['findUNIT_IC'][i]['UNIT'].toString()
+                : "",
+            masterID: databuff[0]['findUNIT_IC'][i]['masterID'] != null
+                ? databuff[0]['findUNIT_IC'][i]['masterID'].toString()
+                : "",
+          ));
+        }
+      }
+
+      String findUNIT_FNconv(String input) {
+        String output = "";
+
+        for (int i = 0; i < findUNIT_FN.length; i++) {
+          if (input == findUNIT_FN[i].masterID) {
+            output = findUNIT_FN[i].NAME;
+            break;
+          }
+        }
+
+        return output;
+      }
+
+      String findUNIT_ICconv(String input) {
+        String output = "";
+
+        for (int i = 0; i < findUNIT_IC.length; i++) {
+          if (input == findUNIT_IC[i].masterID) {
+            output = findUNIT_IC[i].NAME;
+            break;
+          }
+        }
+
+        return output;
+      }
+
+      //findSPECIFICATION_FN
+      // print(databuff[0]['findSPECIFICATION_FN']);
+      List<BasicBodyData> findSPECIFICATION_FN = [];
+      if (databuff[0]['findSPECIFICATION_FN'] != null) {
+        for (int i = 0; i < databuff[0]['findSPECIFICATION_FN'].length; i++) {
+          findSPECIFICATION_FN.add(BasicBodyData(
+            NAME:
+                databuff[0]['findSPECIFICATION_FN'][i]['SPECIFICATION'] != null
+                    ? databuff[0]['findSPECIFICATION_FN'][i]['SPECIFICATION']
+                        .toString()
+                    : "",
+            masterID: databuff[0]['findSPECIFICATION_FN'][i]['masterID'] != null
+                ? databuff[0]['findSPECIFICATION_FN'][i]['masterID'].toString()
+                : "",
+          ));
+        }
+      }
+
+      List<BasicBodyData> findSPECIFICATION_IC = [];
+      if (databuff[0]['findSPECIFICATION_IC'] != null) {
+        for (int i = 0; i < databuff[0]['findSPECIFICATION_IC'].length; i++) {
+          findSPECIFICATION_IC.add(BasicBodyData(
+            NAME:
+                databuff[0]['findSPECIFICATION_IC'][i]['SPECIFICATION'] != null
+                    ? databuff[0]['findSPECIFICATION_IC'][i]['SPECIFICATION']
+                        .toString()
+                    : "",
+            masterID: databuff[0]['findSPECIFICATION_IC'][i]['masterID'] != null
+                ? databuff[0]['findSPECIFICATION_IC'][i]['masterID'].toString()
+                : "",
+          ));
+        }
+      }
+
+      String findSPECIFICATION_FNconv(String input) {
         String output = "";
 
         if (input.contains("SPECIFICATION-")) {
-          for (int i = 0; i < findSPECIFICATION.length; i++) {
-            if (input == findSPECIFICATION[i].masterID) {
-              output = findSPECIFICATION[i].NAME;
+          for (int i = 0; i < findSPECIFICATION_FN.length; i++) {
+            if (input == findSPECIFICATION_FN[i].masterID) {
+              output = findSPECIFICATION_FN[i].NAME;
+              break;
+            }
+          }
+        } else {
+          if (input.contains("{") && input.contains("}")) {
+            Map<String, dynamic> data = jsonStringToMap(input);
+            // print(input);
+            output = input;
+            if (data['condition'] != null && data['condition'] == "BTW") {
+              output = '${data['BTW_LOW']} - ${data['BTW_HI']} ';
+            } else if (data['condition'] != null &&
+                data['condition'] == "Actual") {
+              output = 'Actual';
+            } else if (data['condition'] != null &&
+                data['condition'] == "LOL(<)") {
+              output = '${data['LOL_H']} <  ';
+            } else if (data['condition'] != null &&
+                data['condition'] == "HIM(>)") {
+              output = ' > ${data['HIM_L']}';
+            }
+          } else {
+            output = input;
+          }
+        }
+        return output;
+      }
+
+      String findSPECIFICATION_ICconv(String input) {
+        String output = "";
+
+        if (input.contains("SPECIFICATION-")) {
+          for (int i = 0; i < findSPECIFICATION_IC.length; i++) {
+            if (input == findSPECIFICATION_IC[i].masterID) {
+              output = findSPECIFICATION_IC[i].NAME;
               break;
             }
           }
@@ -244,15 +407,16 @@ class FINSPECTIONget_Bloc extends Bloc<FINSPECTIONget_Event, InspectionSTD> {
               TYPE: databuff[0]['FINAL'][i]['TYPE'] != null
                   ? databuff[0]['FINAL'][i]['TYPE'].toString()
                   : '',
-              TYPEname: findTYPEconv(databuff[0]['FINAL'][i]['TYPE'] != null
+              TYPEname: findTYPE_FNconv(databuff[0]['FINAL'][i]['TYPE'] != null
                   ? databuff[0]['FINAL'][i]['TYPE'].toString()
                   : ''),
               ITEMs: databuff[0]['FINAL'][i]['ITEMs'] != null
                   ? databuff[0]['FINAL'][i]['ITEMs'].toString()
                   : '',
-              ITEMsname: findITEMsconv(databuff[0]['FINAL'][i]['ITEMs'] != null
-                  ? databuff[0]['FINAL'][i]['ITEMs'].toString()
-                  : ''),
+              ITEMsname: findITEMs_FNconv(
+                  databuff[0]['FINAL'][i]['ITEMs'] != null
+                      ? databuff[0]['FINAL'][i]['ITEMs'].toString()
+                      : ''),
               RESULTFORMAT: databuff[0]['FINAL'][i]['RESULTFORMAT'] != null
                   ? databuff[0]['FINAL'][i]['RESULTFORMAT'].toString()
                   : '',
@@ -271,7 +435,7 @@ class FINSPECTIONget_Bloc extends Bloc<FINSPECTIONget_Event, InspectionSTD> {
               METHOD: databuff[0]['FINAL'][i]['METHOD'] != null
                   ? databuff[0]['FINAL'][i]['METHOD'].toString()
                   : '',
-              METHODname: findMACHINEconv(
+              METHODname: findMACHINE_FNconv(
                   databuff[0]['FINAL'][i]['METHOD'] != null
                       ? databuff[0]['FINAL'][i]['METHOD'].toString()
                       : ''),
@@ -371,20 +535,20 @@ class FINSPECTIONget_Bloc extends Bloc<FINSPECTIONget_Event, InspectionSTD> {
                               .toString()
                           : '-'
                   : '-',
-              SPECIFICATIONvename: findSPECIFICATIONconv(
+              SPECIFICATIONvename: findSPECIFICATION_FNconv(
                   databuff[0]['FINAL'][i]['SPECIFICATIONve'] != null
                       ? databuff[0]['FINAL'][i]['SPECIFICATIONve'].toString()
                       : ''),
               UNIT: databuff[0]['FINAL'][i]['UNIT'] != null
                   ? databuff[0]['FINAL'][i]['UNIT'].toString()
                   : '',
-              UNITname: findUNITconv(databuff[0]['FINAL'][i]['UNIT'] != null
+              UNITname: findUNIT_FNconv(databuff[0]['FINAL'][i]['UNIT'] != null
                   ? databuff[0]['FINAL'][i]['UNIT'].toString()
                   : ''),
               CONVERSE: databuff[0]['FINAL'][i]['CONVERSE'] != null
                   ? databuff[0]['FINAL'][i]['CONVERSE'].toString()
                   : '',
-              CONVERSEname: findUNITconv(
+              CONVERSEname: findUNIT_FNconv(
                   databuff[0]['FINAL'][i]['CONVERSE'] != null
                       ? databuff[0]['FINAL'][i]['CONVERSE'].toString()
                       : ''),
@@ -416,6 +580,231 @@ class FINSPECTIONget_Bloc extends Bloc<FINSPECTIONget_Event, InspectionSTD> {
           );
         }
       }
+
+      if (databuff[0]['INCOMMING'] != null) {
+        for (var i = 0; i < databuff[0]['INCOMMING'].length; i++) {
+          //
+          output.INCOMING.add(
+            speckSTD(
+              seq: databuff[0]['INCOMMING'][i]['SEQ'] != null
+                  ? databuff[0]['INCOMMING'][i]['SEQ'].toString()
+                  : '0',
+              TYPE: databuff[0]['INCOMMING'][i]['TYPE'] != null
+                  ? databuff[0]['INCOMMING'][i]['TYPE'].toString()
+                  : '',
+              TYPEname: findTYPE_ICconv(
+                  databuff[0]['INCOMMING'][i]['TYPE'] != null
+                      ? databuff[0]['INCOMMING'][i]['TYPE'].toString()
+                      : ''),
+              ITEMs: databuff[0]['INCOMMING'][i]['ITEMs'] != null
+                  ? databuff[0]['INCOMMING'][i]['ITEMs'].toString()
+                  : '',
+              ITEMsname: findITEMs_ICconv(
+                  databuff[0]['INCOMMING'][i]['ITEMs'] != null
+                      ? databuff[0]['INCOMMING'][i]['ITEMs'].toString()
+                      : ''),
+              RESULTFORMAT: databuff[0]['INCOMMING'][i]['RESULTFORMAT'] != null
+                  ? databuff[0]['INCOMMING'][i]['RESULTFORMAT'].toString()
+                  : '',
+              GRAPHTYPE: databuff[0]['INCOMMING'][i]['GRAPHTYPE'] != null
+                  ? databuff[0]['INCOMMING'][i]['GRAPHTYPE'].toString()
+                  : '',
+              INTERSECTION: databuff[0]['INCOMMING'][i]['INTERSECTION'] != null
+                  ? databuff[0]['INCOMMING'][i]['INTERSECTION'].toString()
+                  : '',
+              DOCUMENT: databuff[0]['INCOMMING'][i]['DOCUMENT'] != null
+                  ? databuff[0]['INCOMMING'][i]['DOCUMENT'].toString()
+                  : '',
+              SCMARK: databuff[0]['INCOMMING'][i]['SCMARK'] != null
+                  ? databuff[0]['INCOMMING'][i]['SCMARK'].toString()
+                  : '',
+              METHOD: databuff[0]['INCOMMING'][i]['METHOD'] != null
+                  ? databuff[0]['INCOMMING'][i]['METHOD'].toString()
+                  : '',
+              METHODname: findMACHINE_ICconv(
+                  databuff[0]['INCOMMING'][i]['METHOD'] != null
+                      ? databuff[0]['INCOMMING'][i]['METHOD'].toString()
+                      : ''),
+              INSTRUMENTS: databuff[0]['INCOMMING'][i]['INSTRUMENTS'] != null
+                  ? databuff[0]['INCOMMING'][i]['INSTRUMENTS'].toString()
+                  : '',
+              SPECIFICATION: databuff[0]['INCOMMING'][i]['SPECIFICATION'] !=
+                      null
+                  ? (databuff[0]['INCOMMING'][i]['SPECIFICATION']).length > 0
+                      ? databuff[0]['INCOMMING'][i]['SPECIFICATION'][0]
+                                  ['value'] !=
+                              null
+                          ? databuff[0]['INCOMMING'][i]['SPECIFICATION'][0]
+                                  ['value']
+                              .toString()
+                          : ''
+                      : ''
+                  : '',
+              SPECIFICATIONstr: databuff[0]['INCOMMING'][i]['SPECIFICATION'] !=
+                      null
+                  ? (databuff[0]['INCOMMING'][i]['SPECIFICATION']).length > 0
+                      ? databuff[0]['INCOMMING'][i]['SPECIFICATION'][0]
+                                  ['name'] !=
+                              null
+                          ? databuff[0]['INCOMMING'][i]['SPECIFICATION'][0]
+                                  ['name']
+                              .toString()
+                          : ''
+                      : ''
+                  : '',
+              SPECIFICATIONve: databuff[0]['INCOMMING'][i]['SPECIFICATIONve'] !=
+                      null
+                  ? databuff[0]['INCOMMING'][i]['SPECIFICATIONve'].toString()
+                  : '',
+              SPECIFICATIONcondition:
+                  databuff[0]['INCOMMING'][i]['SPECIFICATIONve'] != null
+                      ? databuff[0]['INCOMMING'][i]['SPECIFICATIONve']
+                                  .runtimeType ==
+                              String
+                          ? databuff[0]['INCOMMING'][i]['SPECIFICATIONve']
+                              .toString()
+                          : databuff[0]['INCOMMING'][i]['SPECIFICATIONve']
+                                      ['condition'] !=
+                                  null
+                              ? databuff[0]['INCOMMING'][i]['SPECIFICATIONve']
+                                      ['condition']
+                                  .toString()
+                              : '-'
+                      : '-',
+              SPECIFICATIONBTW_HI:
+                  databuff[0]['INCOMMING'][i]['SPECIFICATIONve'] != null
+                      ? databuff[0]['INCOMMING'][i]['SPECIFICATIONve']
+                                  .runtimeType ==
+                              String
+                          ? databuff[0]['INCOMMING'][i]['SPECIFICATIONve']
+                              .toString()
+                          : databuff[0]['INCOMMING'][i]['SPECIFICATIONve']
+                                      ['BTW_HI'] !=
+                                  null
+                              ? databuff[0]['INCOMMING'][i]['SPECIFICATIONve']
+                                      ['BTW_HI']
+                                  .toString()
+                              : '-'
+                      : '-',
+              SPECIFICATIONBTW_LOW:
+                  databuff[0]['INCOMMING'][i]['SPECIFICATIONve'] != null
+                      ? databuff[0]['INCOMMING'][i]['SPECIFICATIONve']
+                                  .runtimeType ==
+                              String
+                          ? databuff[0]['INCOMMING'][i]['SPECIFICATIONve']
+                              .toString()
+                          : databuff[0]['INCOMMING'][i]['SPECIFICATIONve']
+                                      ['BTW_LOW'] !=
+                                  null
+                              ? databuff[0]['INCOMMING'][i]['SPECIFICATIONve']
+                                      ['BTW_LOW']
+                                  .toString()
+                              : '-'
+                      : '-',
+              SPECIFICATIONHIM_L:
+                  databuff[0]['INCOMMING'][i]['SPECIFICATIONve'] != null
+                      ? databuff[0]['INCOMMING'][i]['SPECIFICATIONve']
+                                  .runtimeType ==
+                              String
+                          ? databuff[0]['INCOMMING'][i]
+                                  ['SPECIFICATIONve']
+                              .toString()
+                          : databuff[0]['INCOMMING'][i]['SPECIFICATIONve']
+                                      ['HIM_L'] !=
+                                  null
+                              ? databuff[0]['INCOMMING'][i]['SPECIFICATIONve']
+                                      ['HIM_L']
+                                  .toString()
+                              : '-'
+                      : '-',
+              SPECIFICATIONLOL_H:
+                  databuff[0]['INCOMMING'][i]['SPECIFICATIONve'] != null
+                      ? databuff[0]['INCOMMING'][i]['SPECIFICATIONve']
+                                  .runtimeType ==
+                              String
+                          ? databuff[0]['INCOMMING'][i]
+                                  ['SPECIFICATIONve']
+                              .toString()
+                          : databuff[0]['INCOMMING'][i]['SPECIFICATIONve']
+                                      ['LOL_H'] !=
+                                  null
+                              ? databuff[0]['INCOMMING'][i]['SPECIFICATIONve']
+                                      ['LOL_H']
+                                  .toString()
+                              : '-'
+                      : '-',
+              SPECIFICATIONTARGET:
+                  databuff[0]['INCOMMING'][i]['SPECIFICATIONve'] != null
+                      ? databuff[0]['INCOMMING'][i]['SPECIFICATIONve']
+                                  .runtimeType ==
+                              String
+                          ? databuff[0]['INCOMMING'][i]['SPECIFICATIONve']
+                              .toString()
+                          : databuff[0]['INCOMMING'][i]['SPECIFICATIONve']
+                                      ['TARGET'] !=
+                                  null
+                              ? databuff[0]['INCOMMING'][i]['SPECIFICATIONve']
+                                      ['TARGET']
+                                  .toString()
+                              : '-'
+                      : '-',
+              SPECIFICATIONvename: findSPECIFICATION_ICconv(databuff[0]
+                          ['INCOMMING'][i]['SPECIFICATIONve'] !=
+                      null
+                  ? databuff[0]['INCOMMING'][i]['SPECIFICATIONve'].toString()
+                  : ''),
+              UNIT: databuff[0]['INCOMMING'][i]['UNIT'] != null
+                  ? databuff[0]['INCOMMING'][i]['UNIT'].toString()
+                  : '',
+              UNITname: findUNIT_ICconv(
+                  databuff[0]['INCOMMING'][i]['UNIT'] != null
+                      ? databuff[0]['INCOMMING'][i]['UNIT'].toString()
+                      : ''),
+              CONVERSE: databuff[0]['INCOMMING'][i]['CONVERSE'] != null
+                  ? databuff[0]['INCOMMING'][i]['CONVERSE'].toString()
+                  : '',
+              CONVERSEname: findUNIT_ICconv(
+                  databuff[0]['INCOMMING'][i]['CONVERSE'] != null
+                      ? databuff[0]['INCOMMING'][i]['CONVERSE'].toString()
+                      : ''),
+              // POINTPCS: databuff[0]['INCOMMING'][i]['POINTPCS'] != null
+              //     ? databuff[0]['INCOMMING'][i]['POINTPCS'].toString()
+              //     : '',
+              // POSITION: databuff[0]['INCOMMING'][i]['POSITION'] != null
+              //     ? databuff[0]['INCOMMING'][i]['POSITION'].toString()
+              //     : '',
+              POINT: databuff[0]['INCOMMING'][i]['POINT'] != null
+                  ? databuff[0]['INCOMMING'][i]['POINT'].toString()
+                  : '',
+              PCS: databuff[0]['INCOMMING'][i]['PCS'] != null
+                  ? databuff[0]['INCOMMING'][i]['PCS'].toString()
+                  : '',
+              FREQUENCY: databuff[0]['INCOMMING'][i]['FREQUENCY'] != null
+                  ? databuff[0]['INCOMMING'][i]['FREQUENCY'].toString()
+                  : '',
+              MODE: databuff[0]['INCOMMING'][i]['MODE'] != null
+                  ? databuff[0]['INCOMMING'][i]['MODE'].toString()
+                  : '',
+              REMARK: databuff[0]['INCOMMING'][i]['REMARK'] != null
+                  ? databuff[0]['INCOMMING'][i]['REMARK'].toString()
+                  : '',
+              LOAD: databuff[0]['INCOMMING'][i]['LOAD'] != null
+                  ? databuff[0]['INCOMMING'][i]['LOAD'].toString()
+                  : '',
+            ),
+          );
+        }
+      }
+      //
+      String picHold = databuff[0]['Pimg'] != null
+          ? databuff[0]['Pimg']['P1'] != null
+              ? databuff[0]['Pimg']['P1'].toString()
+              : ''
+          : '';
+      List<String> picHoldList = picHold.split(",");
+      if (picHoldList.length > 1) {
+        output.Pimg = picHoldList[1];
+      }
     }
     emit(output);
   }
@@ -423,7 +812,7 @@ class FINSPECTIONget_Bloc extends Bloc<FINSPECTIONget_Event, InspectionSTD> {
   Future<void> _FINSPECTIONget_FLUSH(
       InspectionSTD toAdd, Emitter<InspectionSTD> emit) async {
     InspectionSTD output = InspectionSTD(
-      INCOMMING: [],
+      INCOMING: [],
       INPROCESS: [],
       FINAL: [],
     );
@@ -441,7 +830,7 @@ class InspectionSTD {
     this.PARTNAME = '',
     this.MATERIAL = '',
     //-------------------------------
-    required this.INCOMMING,
+    required this.INCOMING,
     required this.INPROCESS,
     required this.FINAL,
     //-------------------------------
@@ -456,7 +845,7 @@ class InspectionSTD {
   String PARTNAME;
   String MATERIAL;
   //-------------------------------
-  List<speckSTD> INCOMMING;
+  List<speckSTD> INCOMING;
   List<speckSTD> INPROCESS;
   List<speckSTD> FINAL;
   //-------------------------------
@@ -489,10 +878,10 @@ class speckSTD {
     this.SPECIFICATIONLOL_H = '',
     this.SPECIFICATIONTARGET = '',
     this.SPECIFICATIONvename = '',
-    this.UNIT = '',
-    this.UNITname = '',
-    this.CONVERSE = '',
-    this.CONVERSEname = '',
+    this.UNIT = '-',
+    this.UNITname = '-',
+    this.CONVERSE = '-',
+    this.CONVERSEname = '-',
     // this.POINTPCS = '',
     // this.POSITION = '',
     this.POINT = '',
